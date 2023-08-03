@@ -18,8 +18,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix("v1")->group(function () {
 
-    // Route::middleware('auth:sanctum')->group(function () {
-    // });
+    Route::middleware('auth:sanctum')->group(function () {
+
+
+        Route::post("logout", [AuthController::class, 'logout']);
+        Route::post("logout-all", [AuthController::class, 'logoutAll']);
+    });
 
     Route::post('login', [AuthController::class, 'login']);
 });
