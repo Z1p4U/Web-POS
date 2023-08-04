@@ -21,11 +21,13 @@ Route::prefix("v1")->group(function () {
 
     Route::middleware('auth:sanctum')->group(function () {
 
-
-        Route::post('register', [AuthController::class, "register"]);
         Route::put("password-update", [PasswordController::class, 'update']);
-        Route::post("logout", [AuthController::class, 'logout']);
-        Route::post("logout-all", [AuthController::class, 'logoutAll']);
+
+        Route::controller(AuthController::class)->group(function () {
+            Route::post('register', "register");
+            Route::post("logout", 'logout');
+            Route::post("logout-all", 'logoutAll');
+        });
     });
 
     Route::post('login', [AuthController::class, 'login']);
