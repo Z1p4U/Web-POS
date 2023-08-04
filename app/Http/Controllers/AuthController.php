@@ -41,12 +41,12 @@ class AuthController extends Controller
             ]);
         };
 
-        return Auth::user()->createToken($request->has("device") ? $request->device : 'unknown');
+        return $request->user()->createToken($request->has("device") ? $request->device : 'unknown');
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
-        Auth::user()->currentAccessToken()->delete();
+        $request->user()->currentAccessToken()->delete();
 
         return response()->json([
             "message" => "logout successful",
@@ -58,11 +58,13 @@ class AuthController extends Controller
         return Auth::user()->tokens;
     }
 
-    public function logoutAll()
+    public function logoutAll(Request $request)
     {
-        foreach (Auth::user()->tokens as $token) {
-            $token->delete();
-        }
+        // foreach (Auth::user()->tokens as $token) {
+        //     $token->delete();
+        // }
+
+        $request->user()->tokens()->delete();
 
         return response()->json([
             "message" => "Logout All Successfully",
