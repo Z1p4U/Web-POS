@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BrandController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\StockController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +18,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+
+Route::prefix("v1")->group(function () {
+
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::apiResource("product", ProductController::class);
+        Route::apiResource("stock", StockController::class)->only(['index','store']);
+        Route::apiResource("brand", BrandController::class);
+
+
+        Route::post("logout", [AuthController::class, 'logout']);
+        Route::post("logout-all", [AuthController::class, 'logoutAll']);
+    });
+
+
+    Route::post('login', [AuthController::class, 'login']);
 });

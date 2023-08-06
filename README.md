@@ -1,66 +1,146 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Web POS
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## API Reference
 
-## About Laravel
+#### Login (Post)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+```http
+  http://127.0.0.1:8000/api/v1/login
+```
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+| Arguments | Type   | Description                  |
+| :-------- | :----- | :--------------------------- |
+| email     | sting  | **Required** admin@gmail.com |
+| password  | string | **Required** adfdafda        |
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## User Profile
 
-## Learning Laravel
+#### Logout (Post)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+```http
+  http://127.0.0.1:8000/api/v1/logout
+```
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+#### Logout from all devices(Post)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+```http
+  http://127.0.0.1:8000/api/v1/logout-all
+```
 
-## Laravel Sponsors
+#### Get Devices (Get)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+```http
+  http://127.0.0.1:8000/api/v1/devices
+```
 
-### Premium Partners
+## Inventory
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+#### Products (Get)
 
-## Contributing
+```http
+  http://127.0.0.1:8000/api/v1/product
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+#### Single Product (Get)
 
-## Code of Conduct
+```http
+  http://127.0.0.1:8000/api/v1/product/{id}
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+#### Create Product (Post)
 
-## Security Vulnerabilities
+```http
+  http://127.0.0.1:8000/api/v1/product
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+| Arguments        | Type    | Description               |
+| :--------------- | :------ | :------------------------ |
+| name             | string  | **Required** example name |
+| brand_id         | integer | **Required** 2            |
+| actual_price     | number  | **Required** 500          |
+| sale_price       | boolean | **Required** 600          |
+| unit             | string  | **Required** 1            |
+| more_information | string  | **Nullable** text         |
+| photo            | string  | **Nullable** example.jpeg |
 
-## License
+#### Update Product (Put)
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```http
+  http://127.0.0.1:8000/api/v1/product/{id}
+```
+
+| Arguments        | Type    | Description               |
+| :--------------- | :------ | :------------------------ |
+| name             | string  | **Required** example name |
+| brand_id         | integer | **Required** 2            |
+| actual_price     | number  | **Required** 500          |
+| sale_price       | boolean | **Required** 600          |
+| unit             | string  | **Required** 1            |
+| more_information | string  | **Nullable** text         |
+| photo            | string  | **Nullable** example.jpeg |
+
+#### Delete Product (Delete)
+
+```http
+  http://127.0.0.1:8000/api/v1/product/{id}
+```
+
+### Stock
+
+#### Stock (Get)
+
+```http
+  http://127.0.0.1:8000/api/v1/stock
+```
+
+#### Create Stock (Post)
+
+```http
+  http://127.0.0.1:8000/api/vi/stock
+```
+
+### Brand
+
+#### Brand (Get)
+
+```http
+  http://127.0.0.1:8000/api/v1/brand
+```
+
+#### Single Brand (Get)
+
+```http
+  http://127.0.0.1:8000/api/v1/brand/{id}
+```
+
+#### Create Brand (Post)
+
+```http
+  http://127.0.0.1:8000/api/v1/brand
+```
+
+| Arguments   | Type    | Description               |
+| :---------- | :------ | :------------------------ |
+| name        | string  | **Required** example name |
+| company     | integer | **Required** company name |
+| information | number  | **Nullable** text         |
+| photo       | boolean | **Nullable** example.jpeg |
+
+#### Update Brand (Put)
+
+```http
+  http://127.0.0.1:8000/api/v1/brand/{id}
+```
+
+| Arguments   | Type    | Description               |
+| :---------- | :------ | :------------------------ |
+| name        | string  | **Required** example name |
+| company     | integer | **Required** company name |
+| information | number  | **Nullable** text         |
+| photo       | boolean | **Nullable** example.jpeg |
+
+#### Delete Brand (Delete)
+
+```http
+  http://127.0.0.1:8000/api/v1/brand/{id}
+```
