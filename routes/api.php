@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PasswordController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,9 +21,13 @@ Route::prefix("v1")->group(function () {
 
     Route::middleware('auth:sanctum')->group(function () {
 
+        Route::put("password-update", [PasswordController::class, 'update']);
 
-        Route::post("logout", [AuthController::class, 'logout']);
-        Route::post("logout-all", [AuthController::class, 'logoutAll']);
+        Route::controller(AuthController::class)->group(function () {
+            Route::post('register', "register");
+            Route::post("logout", 'logout');
+            Route::post("logout-all", 'logoutAll');
+        });
     });
 
     Route::post('login', [AuthController::class, 'login']);

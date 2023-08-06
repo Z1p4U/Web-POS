@@ -5,28 +5,37 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Password;
 
 class AuthController extends Controller
 {
-    // public function register(Request $request)
-    // {
-    //     $request->validate([
-    //         "name" => "required|min:3|max:20",
-    //         "email" => "email|required|unique:users",
-    //         "password" => "required|confirmed|min:6",
-    //     ]);
+    public function register(Request $request)
+    {
+        $request->validate([
+            "name" => "required|min:3|max:20",
+            "email" => "email|required|unique:users",
+            "password" => "required|confirmed|min:6",
+            "role" => "required",
+            'user_photo' => "nullable",
+        ]);
 
-    //     $user = User::create([
-    //         "name" => $request->name,
-    //         "email" => $request->email,
-    //         "password" => Hash::make($request->password),
-    //     ]);
+        Gate::authorize("admin-only");
 
-    //     return response()->json([
-    //         "message" => "user register successfully",
-    //     ]);
-    // }
+        $user = User::create([
+            "name" => $request->name,
+            "email" => $request->email,
+            "password" => Hash::make($request->password),
+            'role' => $request->role,
+            "user_photo" => $request->user_photo
+        ]);
+
+
+        return response()->json([
+            "message" => "user register successfully",
+        ]);
+    }
 
     public function login(Request $request)
     {
@@ -68,6 +77,24 @@ class AuthController extends Controller
 
         return response()->json([
             "message" => "Logout All Successfully",
+        ]);
+    }
+
+    public function updatePassword(Request $request)
+    {
+        $validated = $request->validateWithBag('updatePassword', [
+            'current_password' => ['required', "current_password"],
+            'password' => ['required', Password::defaults(), 'confirmed'],
+        ]);
+
+        Gate::authorize("admin-only");
+
+        $request->user()->update([
+            'password' => Hash::make($validated['password']),
+        ]);
+
+        return response()->json([
+            "message" => "Password Updated",
         ]);
     }
 }
