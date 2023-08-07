@@ -15,7 +15,7 @@
 
 ## User Profile
 
-#### Register (Post)
+#### Register (Post) - (Admin Only)
 
 ```http
   http://127.0.0.1:8000/api/v1/register
@@ -30,7 +30,7 @@
 | role                  | enum   | **Required** admin/staff     |
 | user_photo            | string | **Nullable** url()           |
 
-#### Password Update (Put)
+#### Password Update (Put) - (Admin Only)
 
 ```http
   http://127.0.0.1:8000/api/v1/password-update
@@ -48,7 +48,7 @@
   http://127.0.0.1:8000/api/v1/logout
 ```
 
-#### Logout from all devices(Post)
+#### Logout from all devices(Post) - (Admin Only)
 
 ```http
   http://127.0.0.1:8000/api/v1/logout-all
@@ -74,7 +74,7 @@
   http://127.0.0.1:8000/api/v1/product/{id}
 ```
 
-#### Create Product (Post)
+#### Create Product (Post) - (Admin Only)
 
 ```http
   http://127.0.0.1:8000/api/v1/product
@@ -90,7 +90,7 @@
 | more_information | string  | **Nullable** text         |
 | photo            | string  | **Nullable** example.jpeg |
 
-#### Update Product (Put)
+#### Update Product (Put) - (Admin Only)
 
 ```http
   http://127.0.0.1:8000/api/v1/product/{id}
@@ -106,7 +106,7 @@
 | more_information | string  | **Nullable** text         |
 | photo            | string  | **Nullable** example.jpeg |
 
-#### Delete Product (Delete)
+#### Delete Product (Delete) - (Admin Only)
 
 ```http
   http://127.0.0.1:8000/api/v1/product/{id}
@@ -140,7 +140,7 @@
   http://127.0.0.1:8000/api/v1/brand/{id}
 ```
 
-#### Create Brand (Post)
+#### Create Brand (Post) - (Admin Only)
 
 ```http
   http://127.0.0.1:8000/api/v1/brand
@@ -153,7 +153,7 @@
 | information | number  | **Nullable** text         |
 | photo       | boolean | **Nullable** example.jpeg |
 
-#### Update Brand (Put)
+#### Update Brand (Put) - (Admin Only)
 
 ```http
   http://127.0.0.1:8000/api/v1/brand/{id}
@@ -166,8 +166,79 @@
 | information | number  | **Nullable** text         |
 | photo       | boolean | **Nullable** example.jpeg |
 
-#### Delete Brand (Delete)
+#### Delete Brand (Delete) - (Admin Only)
 
 ```http
   http://127.0.0.1:8000/api/v1/brand/{id}
 ```
+
+## Sale
+
+#### Voucher (Get)
+
+```http
+  http://127.0.0.1:8000/api/v1/voucher
+```
+
+#### Single Voucher (Get)
+
+```http
+  http://127.0.0.1:8000/api/v1/voucher/{id}
+```
+
+#### Create Voucher (Post)
+
+```http
+  http://127.0.0.1:8000/api/v1/voucher
+```
+
+| Arguments      | Type    | Description               |
+| :------------- | :------ | :------------------------ |
+| customer       | string  | **Nullable** example name |
+| phone          | integer | **Nullable** 091212212    |
+| voucher_number | number  | **Required** 0            |
+| total          | number  | **Required** 0            |
+| tax            | number  | **Required** 0            |
+| net_total      | number  | **Required** 0            |
+
+#### Update Voucher (Put)
+
+```http
+  http://127.0.0.1:8000/api/v1/voucher/{id}
+```
+
+| Arguments      | Type    | Description               |
+| :------------- | :------ | :------------------------ |
+| customer       | string  | **Nullable** example name |
+| phone          | integer | **Nullable** 091212212    |
+| voucher_number | number  | **Required** 0            |
+| total          | number  | **Required** 0            |
+| tax            | number  | **Required** 0            |
+| net_total      | number  | **Required** 0            |
+
+#### Delete Voucher (Delete) - (Admin Only)
+
+```http
+  http://127.0.0.1:8000/api/v1/voucher/{id}
+```
+
+### Voucher Record
+
+#### Voucher Record (Get)
+
+```http
+  http://127.0.0.1:8000/api/v1/voucher-record
+```
+
+#### Create Voucher Record (Post)
+
+```http
+  http://127.0.0.1:8000/api/vi/voucher-record
+```
+
+| Arguments  | Type    | Description    |
+| :--------- | :------ | :------------- |
+| voucher_id | integer | **Required** 1 |
+| product_id | integer | **Required** 1 |
+| quantity   | number  | **Required** 0 |
+| cost       | number  | **Required** 0 |

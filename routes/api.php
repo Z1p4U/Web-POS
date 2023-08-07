@@ -6,9 +6,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\VoucherController;
 use App\Http\Controllers\VoucherRecordController;
-use App\Models\Voucher;
 use App\Http\Controllers\PasswordController;
-use App\Models\VoucherRecord;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -31,9 +29,7 @@ Route::prefix("v1")->group(function () {
         Route::apiResource("stock", StockController::class)->only(['index', 'store']);
         Route::apiResource("brand", BrandController::class);
         Route::apiResource("voucher", VoucherController::class);
-        Route::apiResource("voucher-record", VoucherRecordController::class);
-
-
+        Route::apiResource("voucher-record", VoucherRecordController::class)->only(['index', 'store']);
 
         Route::put("password-update", [PasswordController::class, 'update']);
 
