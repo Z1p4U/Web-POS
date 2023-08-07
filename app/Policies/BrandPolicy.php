@@ -55,6 +55,8 @@ class BrandPolicy
         if($user->role === "admin"){
             return true;
         }
+
+        return false;
     }
 
     /**

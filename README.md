@@ -74,7 +74,7 @@
   http://127.0.0.1:8000/api/v1/product/{id}
 ```
 
-#### Create Product (Post) - (Admin Only)
+#### Create Product (Post)
 
 ```http
   http://127.0.0.1:8000/api/v1/product
@@ -140,7 +140,7 @@
   http://127.0.0.1:8000/api/v1/brand/{id}
 ```
 
-#### Create Brand (Post) - (Admin Only)
+#### Create Brand (Post)
 
 ```http
   http://127.0.0.1:8000/api/v1/brand

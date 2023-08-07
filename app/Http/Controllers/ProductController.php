@@ -87,7 +87,12 @@ class ProductController extends Controller
             ]);
         };
 
-        $this->authorize('update', $product);
+        // $this->authorize('update', $product);
+        if (Gate::denies('update', $product)) {
+            return response()->json([
+                "message" => "you are no allowed"
+            ]);
+        }
 
         $product->name = $request->name;
         $product->brand_id = $request->brand_id;
