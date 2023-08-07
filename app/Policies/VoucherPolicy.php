@@ -8,6 +8,13 @@ use Illuminate\Auth\Access\Response;
 
 class VoucherPolicy
 {
+
+    public function before(User $user)
+    {
+        if ($user->role === "admin") {
+            return true;
+        }
+    }
     /**
      * Determine whether the user can view any models.
      */
@@ -45,7 +52,9 @@ class VoucherPolicy
      */
     public function delete(User $user, Voucher $voucher): bool
     {
-        //
+        if ($user->role === "admin") {
+            return true;
+        }
     }
 
     /**

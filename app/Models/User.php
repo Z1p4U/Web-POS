@@ -17,6 +17,11 @@ class User extends Authenticatable
         return $this->hasMany(Product::class);
     }
 
+    public function voucher()
+    {
+        return $this->hasMany(Voucher::class);
+    }
+
     /**
      * The attributes that are mass assignable.
      *
@@ -26,6 +31,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role'
     ];
 
     /**
