@@ -7,6 +7,7 @@ use App\Http\Controllers\StockController;
 use App\Http\Controllers\VoucherController;
 use App\Http\Controllers\VoucherRecordController;
 use App\Models\Voucher;
+use App\Http\Controllers\PasswordController;
 use App\Models\VoucherRecord;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -34,9 +35,13 @@ Route::prefix("v1")->group(function () {
 
 
 
+        Route::put("password-update", [PasswordController::class, 'update']);
 
-        Route::post("logout", [AuthController::class, 'logout']);
-        Route::post("logout-all", [AuthController::class, 'logoutAll']);
+        Route::controller(AuthController::class)->group(function () {
+            Route::post('register', "register");
+            Route::post("logout", 'logout');
+            Route::post("logout-all", 'logoutAll');
+        });
     });
 
 
