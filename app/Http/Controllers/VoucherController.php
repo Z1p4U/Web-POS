@@ -91,7 +91,7 @@ class VoucherController extends Controller
             "voucher_number" => $request->voucher_number,
             "total" => $request->total,
             "tax" => $request->total * ($request->tax / 100),
-            "net_total" => $request->total - $request->total * ($request->tax / 100),
+            "net_total" => $request->total + $request->total * ($request->tax / 100),
             "user_id" => $request->user_id,
         ]);
 
