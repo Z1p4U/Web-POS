@@ -120,7 +120,7 @@ class ProductController extends Controller
         if (is_null($product)) {
             return response()->json([
                 "message" => "there is no product to delete"
-            ]);
+            ],404);
         }
         if (Gate::denies('delete', $product)) {
             return response()->json([

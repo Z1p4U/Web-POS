@@ -46,7 +46,7 @@ class StockController extends Controller
         if (is_null($product)) {
             return response()->json([
                 "message" => "there is no product yet"
-            ]);
+            ],404);
         };
         $product->total_stock = $product->total_stock + $request->quantity;
         $product->update();

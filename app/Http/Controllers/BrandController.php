@@ -59,7 +59,7 @@ class BrandController extends Controller
         if (is_null($brand)) {
             return response()->json([
                 'message' => 'nothing to show',
-            ]);
+            ],404);
         }
 
         return new BrandResource($brand);
@@ -75,7 +75,7 @@ class BrandController extends Controller
         if (is_null($brand)) {
             return response()->json([
                 'message' => 'nothing to show',
-            ]);
+            ],404);
         }
 
         $brand->name = $request->name;
@@ -98,7 +98,7 @@ class BrandController extends Controller
         if (is_null($brand)) {
             return response()->json([
                 'message' => 'nothing to show',
-            ]);
+            ],404);
         }
 
         if (Gate::denies('delete', $brand)) {
