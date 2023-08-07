@@ -50,7 +50,13 @@ class AuthController extends Controller
             ]);
         };
 
-        return $request->user()->createToken($request->has("device") ? $request->device : 'unknown');
+        $token = $request->user()->createToken($request->has("device") ? $request->device : 'unknown');
+
+        return response()->json([
+            "message" => "login successfully",
+            "device_name" => $token->accessToken->name,
+            "token" => $token->plainTextToken
+        ]);
     }
 
     public function logout(Request $request)

@@ -16,12 +16,15 @@ class VoucherFactory extends Factory
      */
     public function definition(): array
     {
+        $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < 6; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
         return [
             'phone' => fake()->phoneNumber(),
-            "voucher_number" => 0,
-            "total" => 0,
-            "tax" => 5,
-            "net_total" => 0,
+            "voucher_number" => $randomString,
             "user_id" => 1
         ];
     }

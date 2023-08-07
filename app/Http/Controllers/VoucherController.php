@@ -6,7 +6,7 @@ use App\Models\Voucher;
 use App\Http\Requests\StoreVoucherRequest;
 use App\Http\Requests\UpdateVoucherRequest;
 use App\Http\Resources\VoucherResource;
-use Illuminate\Contracts\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Gate;
 
 class VoucherController extends Controller
@@ -42,13 +42,21 @@ class VoucherController extends Controller
         //     "tax" => "required",
         // ]);
 
+        $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+
+        for ($i = 0; $i < 6; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+
         $voucher = Voucher::create([
             "customer" => $request->customer,
             "phone" => $request->phone,
-            "voucher_number" => $request->voucher_number,
+            "voucher_number" => $randomString,
             "total" => $request->total,
             "tax" => $request->total * ($request->tax / 100),
-            "net_total" => $request->total - $request->total * ($request->tax / 100),
+            "net_total" => $request->total + $request->total * ($request->tax / 100),
             "user_id" => $request->user_id,
         ]);
 
