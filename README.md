@@ -192,16 +192,12 @@
   http://127.0.0.1:8000/api/v1/voucher
 ```
 
-| Arguments      | Type    | Description               |
-| :------------- | :------ | :------------------------ |
-| customer       | string  | **Nullable** example name |
-| phone          | integer | **Nullable** 091212212    |
-| voucher_number | number  | **Required** 0            |
-| total          | number  | **Required** 0            |
-| tax            | number  | **Required** 0            |
-| net_total      | number  | **Required** 0            |
+| Arguments | Type    | Description               |
+| :-------- | :------ | :------------------------ |
+| customer  | string  | **Nullable** example name |
+| phone     | integer | **Nullable** 091212212    |
 
-#### Update Voucher (Put)
+<!-- #### Update Voucher (Put)
 
 ```http
   http://127.0.0.1:8000/api/v1/voucher/{id}
@@ -210,11 +206,7 @@
 | Arguments      | Type    | Description               |
 | :------------- | :------ | :------------------------ |
 | customer       | string  | **Nullable** example name |
-| phone          | integer | **Nullable** 091212212    |
-| voucher_number | number  | **Required** 0            |
-| total          | number  | **Required** 0            |
-| tax            | number  | **Required** 0            |
-| net_total      | number  | **Required** 0            |
+| phone          | integer | **Nullable** 091212212    | -->
 
 #### Delete Voucher (Delete) - (Admin Only)
 
@@ -224,10 +216,10 @@
 
 ### Voucher Record
 
-#### Voucher Record (Get)
+#### Voucher Recorded Products(Post)
 
 ```http
-  http://127.0.0.1:8000/api/v1/voucher-record
+  http://127.0.0.1:8000/api/v1/voucher-record-products
 ```
 
 #### Create Voucher Record (Post)
@@ -241,4 +233,13 @@
 | voucher_id | integer | **Required** 1 |
 | product_id | integer | **Required** 1 |
 | quantity   | number  | **Required** 0 |
-| cost       | number  | **Required** 0 |
+
+#### Delete Voucher Record(Delete)
+
+```http
+  http://127.0.0.1:8000/api/v1/voucher-record/{id}
+```
+
+| Arguments  | Type    | Description    |
+| :--------- | :------ | :------------- |
+| product_id | integer | **Required** 1 |

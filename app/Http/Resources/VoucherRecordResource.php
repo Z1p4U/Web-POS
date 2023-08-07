@@ -17,12 +17,11 @@ class VoucherRecordResource extends JsonResource
         // return parent::toArray($request);
         return [
             "id" => $this->id,
-            "voucher_id" => $this->voucher_id,
-            "product_id" => $this->product_id,
+            "product_name" => $this->product->name,
+            "voucher_number" => $this->voucher->voucher_number,
+            "sale_price" => $this->product->sale_price,
             "quantity" => $this->quantity,
-            "cost" => $this->cost,
-            "created_at" => $this->created_at->format("d m Y"),
-            "updated_at" => $this->updated_at->format("d m Y"),
+            "cost" => $this->cost
         ];
     }
 }

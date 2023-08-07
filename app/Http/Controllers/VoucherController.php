@@ -7,6 +7,7 @@ use App\Http\Requests\StoreVoucherRequest;
 use App\Http\Requests\UpdateVoucherRequest;
 use App\Http\Resources\VoucherResource;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
 class VoucherController extends Controller
@@ -50,15 +51,25 @@ class VoucherController extends Controller
             $randomString .= $characters[rand(0, $charactersLength - 1)];
         }
 
-        $voucher = Voucher::create([
-            "customer" => $request->customer,
-            "phone" => $request->phone,
-            "voucher_number" => $randomString,
-            "total" => $request->total,
-            "tax" => $request->total * ($request->tax / 100),
-            "net_total" => $request->total + $request->total * ($request->tax / 100),
-            "user_id" => $request->user_id,
-        ]);
+        // $voucher = Voucher::create([
+        //     "customer" => $request->customer,
+        //     "phone" => $request->phone,
+        //     "voucher_number" => $randomString,
+        //     "total" => 0,
+        //     "tax" => $request->total * ($request->tax / 100),
+        //     "net_total" => $request->total + $request->total * ($request->tax / 100),
+        //     "user_id" => $request->user_id,
+        // ]);
+
+        $voucher = new Voucher();
+        $voucher->customer = $request->customer;
+        $voucher->phone = $request->phone;
+        $voucher->voucher_number = $randomString;
+        $total = 0;
+        $voucher->total = $total;
+        $voucher->tax = $voucher->total * 0.05;
+        $voucher->net_total = $voucher->total + $voucher->tax;
+        $voucher->user_id = Auth::id();
 
         $voucher->save();
 
