@@ -7,6 +7,7 @@ use App\Http\Requests\StoreVoucherRequest;
 use App\Http\Requests\UpdateVoucherRequest;
 use App\Http\Resources\VoucherResource;
 use Illuminate\Contracts\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Gate;
 
 class VoucherController extends Controller
 {
@@ -112,6 +113,8 @@ class VoucherController extends Controller
                 "message" => "Voucher not found",
             ], 404);
         }
+
+        Gate::authorize("admin-only");
 
         $voucher->delete();
 
