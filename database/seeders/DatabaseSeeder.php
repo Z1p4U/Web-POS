@@ -3,6 +3,9 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Voucher;
+use App\Models\VoucherRecord;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -20,7 +23,13 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call([
-            UserSeeder::class
+            UserSeeder::class,
+            PhotoSeeder::class,
+            BrandSeeder::class,
+            ProductSeeder::class,
+            VoucherSeeder::class,
+            // VoucherRecord::class,
+            // StockSeeder::class,
         ]);
     }
 }

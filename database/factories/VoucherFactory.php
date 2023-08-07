@@ -17,7 +17,12 @@ class VoucherFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'phone' => fake()->phoneNumber(),
+            "voucher_number" => 0,
+            "total" => 0,
+            "tax" => 5,
+            "net_total" => 0,
+            "user_id" => 1
         ];
     }
 }

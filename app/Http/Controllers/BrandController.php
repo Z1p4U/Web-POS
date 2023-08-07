@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Brand;
 use App\Http\Requests\StoreBrandRequest;
 use App\Http\Requests\UpdateBrandRequest;
+use App\Http\Resources\BrandResource;
+use App\Models\Photo;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Auth;
 
 class BrandController extends Controller
 {
@@ -13,7 +18,17 @@ class BrandController extends Controller
      */
     public function index()
     {
-        //
+        $brands = Brand::when(request()->has('keyword'), function ($query) {
+            $query->where(function (Builder $builder) {
+                $keyword = request()->keyword;
+                $builder->where('name', 'LIKE', '%' . $keyword . '%');
+            });
+        })
+            ->latest('id')
+            ->paginate(10)
+            ->withQueryString();
+
+        return BrandResource::collection($brands);
     }
 
     /**
@@ -21,30 +36,81 @@ class BrandController extends Controller
      */
     public function store(StoreBrandRequest $request)
     {
-        //
+        $brand = Brand::create([
+            'name' => $request->name,
+            'company' => $request->company,
+            'user_id' => Auth::id(),
+            'information' => $request->information,
+            'photo' => Photo::find(1)->url,
+        ]);
+
+        return response()->json([
+            'message' => 'created successfully',
+            'data' => $brand,
+        ]);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Brand $brand)
+    public function show(string $id)
     {
-        //
+        $brand = Brand::find($id);
+        if (is_null($brand)) {
+            return response()->json([
+                'message' => 'nothing to show',
+            ]);
+        }
+
+        return new BrandResource($brand);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateBrandRequest $request, Brand $brand)
+    public function update(UpdateBrandRequest $request, string $id)
     {
-        //
+        $brand = Brand::find($id);
+
+        if (is_null($brand)) {
+            return response()->json([
+                'message' => 'nothing to show',
+            ]);
+        }
+
+        $brand->name = $request->name;
+        $brand->company = $request->company;
+        $brand->information = $request->information;
+        $brand->photo = $request->photo;
+        $brand->update();
+        return response()->json([
+            'message' => 'updated successfully',
+        ]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Brand $brand)
+    public function destroy(string $id)
     {
-        //
+        $brand = Brand::find($id);
+
+        if (is_null($brand)) {
+            return response()->json([
+                'message' => 'nothing to show',
+            ]);
+        }
+
+        if (Gate::denies('delete', $brand)) {
+            return response()->json([
+                'message' => 'you are no allowed',
+            ]);
+        }
+
+        $brand->delete();
+
+        return response()->json([
+            'message' => 'deleted successfully',
+        ]);
     }
 }
