@@ -238,6 +238,17 @@
 | product_id | integer | **Required** 1 |
 | quantity   | number  | **Required** 0 |
 
+#### Update Voucher Record (Put)
+
+```http
+  http://b.mmsdev.site/api/vi/voucher-record/{id}
+```
+
+| Arguments  | Type    | Description    |
+| :--------- | :------ | :------------- |
+| product_id | integer | **Required** 1 |
+| quantity   | number  | **Required** 0 |
+
 #### Delete Voucher Record(Delete)
 
 ```http

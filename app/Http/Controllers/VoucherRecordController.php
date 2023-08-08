@@ -116,26 +116,37 @@ class VoucherRecordController extends Controller
             ], 404);
         }
 
-        $recordedProduct->quantity = $request->quantity;
-
+        // updating voucher
+        $changedCost = $voucher->total;
         if ($request->quantity < $recordedProduct->quantity) {
-            $cost = ($recordedProduct->quantity - $request->quantity) * $product->sale_price; // product cost based on quantity
-            $voucher->total -= $cost;
-            $product->total_stock = +$recordedProduct->quantity - $request->quantity;
-        } elseif ($request->quantity > $recordedProduct->quantity) {
-            $cost = ($recordedProduct->quantity + $request->quantity) * $product->sale_price; // product cost based on quantity
-            $voucher->total += $cost;
-            $product->total_stock = +$recordedProduct->quantity + $request->quantity;
+            $quantity = $recordedProduct->quantity - $request->quantity;
+            $changedCost -= $quantity * $product->sale_price;
+            $product->total_stock += $quantity;
+            $product->update();
         }
-        $tax =  $voucher->tax - ($cost * 0.05);
+        if ($request->quantity > $recordedProduct->quantity) {
+            $quantity = ($request->quantity - $recordedProduct->quantity);
+
+            // return $changedCost;
+            $changedCost += $quantity * $product->sale_price;
+            $product->total_stock -= $quantity;
+            $product->update();
+        }
+        $voucher->total = $changedCost;
+        $tax = $voucher->total * 0.05;
         $voucher->tax = $tax;
         $voucher->net_total = $voucher->total + $tax;
+        $voucher->update();
+
+        // voucher records
+
+        $recordedProduct->quantity = $request->quantity;
+        $recordedProduct->cost = $request->quantity * $product->sale_price;
         $recordedProduct->update();
 
-        $product->update();
-
         return response()->json([
-            "message" => "updated successfully"
+            "message" => "updated successfully",
+            "data" => $recordedProduct
         ]);
     }
 
