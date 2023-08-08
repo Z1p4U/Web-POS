@@ -106,21 +106,37 @@ class VoucherRecordController extends Controller
      */
     public function update(UpdateVoucherRecordRequest $request, string $id)
     {
-        // $recordedProduct = VoucherRecord::where('product_id', $id)->first();
-        // $product = Product::find($id); // product wanted to sale
+        $recordedProduct = VoucherRecord::where('voucher_id', $id)->where('product_id', $request->product_id)->first();
+        $product = Product::find($request->product_id); // product wanted to sale
+        $voucher = Voucher::find($id);
 
-        // if (is_null($recordedProduct)) {
-        //     return response()->json([
-        //         "message" => "Not Found "
-        //     ], 404);
-        // }
+        if (is_null($recordedProduct)) {
+            return response()->json([
+                "message" => "Not Found "
+            ], 404);
+        }
 
+        $recordedProduct->quantity = $request->quantity;
 
-        // $recordedProduct->quantity = $request->quantity;
-        // $cost = $request->quantity * $product->sale_price; // product cost based on quantity
-        // $recordedProduct->cost = $cost;
-        // $recordedProduct->update();
-        // return $recordedProduct;
+        if ($request->quantity < $recordedProduct->quantity) {
+            $cost = ($recordedProduct->quantity - $request->quantity) * $product->sale_price; // product cost based on quantity
+            $voucher->total -= $cost;
+            $product->total_stock = +$recordedProduct->quantity - $request->quantity;
+        } elseif ($request->quantity > $recordedProduct->quantity) {
+            $cost = ($recordedProduct->quantity + $request->quantity) * $product->sale_price; // product cost based on quantity
+            $voucher->total += $cost;
+            $product->total_stock = +$recordedProduct->quantity + $request->quantity;
+        }
+        $tax =  $voucher->tax - ($cost * 0.05);
+        $voucher->tax = $tax;
+        $voucher->net_total = $voucher->total + $tax;
+        $recordedProduct->update();
+
+        $product->update();
+
+        return response()->json([
+            "message" => "updated successfully"
+        ]);
     }
 
     /**

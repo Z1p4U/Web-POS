@@ -29,7 +29,7 @@ Route::prefix("v1")->group(function () {
         Route::apiResource("stock", StockController::class)->only(['index', 'store']);
         Route::apiResource("brand", BrandController::class);
         Route::apiResource("voucher", VoucherController::class);
-        Route::apiResource("voucher-record", VoucherRecordController::class)->only(['store', 'destroy']);
+        Route::apiResource("voucher-record", VoucherRecordController::class)->only(['store', 'destroy','update']);
         Route::post("voucher-record-products", [VoucherRecordController::class, 'showProductBasedOnVoucherNumber']);
 
         Route::put("password-update", [PasswordController::class, 'update']);
