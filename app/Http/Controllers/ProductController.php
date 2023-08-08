@@ -53,7 +53,8 @@ class ProductController extends Controller
         $product->sale_price = $request->sale_price;
         $product->unit = $request->unit;
         $product->more_information = $request->more_information;
-        $product->photo = Photo::find(1)->url;
+        // $product->photo = Photo::find(1)->url;
+        $product->photo = $request->photo;
 
         $product->save();
         return response()->json([
@@ -120,7 +121,7 @@ class ProductController extends Controller
         if (is_null($product)) {
             return response()->json([
                 "message" => "there is no product to delete"
-            ],404);
+            ], 404);
         }
         if (Gate::denies('delete', $product)) {
             return response()->json([
