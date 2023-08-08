@@ -62,6 +62,54 @@
 
 ## Inventory
 
+### Brand
+
+#### Brand (Get)
+
+```http
+  https://i.mmsdev.site/api/v1/brand
+```
+
+#### Single Brand (Get)
+
+```http
+  https://i.mmsdev.site/api/v1/brand/{id}
+```
+
+#### Create Brand (Post)
+
+```http
+  https://i.mmsdev.site/api/v1/brand
+```
+
+| Arguments   | Type    | Description               |
+| :---------- | :------ | :------------------------ |
+| name        | string  | **Required** example name |
+| company     | integer | **Required** company name |
+| information | number  | **Nullable** text         |
+| photo       | boolean | **Nullable** example.jpeg |
+
+#### Update Brand (Put) 
+
+```http
+  https://i.mmsdev.site/api/v1/brand/{id}
+```
+
+| Arguments   | Type    | Description               |
+| :---------- | :------ | :------------------------ |
+| name        | string  | **Required** example name |
+| company     | integer | **Required** company name |
+| information | number  | **Nullable** text         |
+| photo       | boolean | **Nullable** example.jpeg |
+
+#### Delete Brand (Delete) - (Admin Only)
+
+```http
+  https://i.mmsdev.site/api/v1/brand/{id}
+```
+
+### Products
+
 #### Products (Get)
 
 ```http
@@ -90,7 +138,7 @@
 | more_information | string  | **Nullable** text         |
 | photo            | string  | **Nullable** example.jpeg |
 
-#### Update Product (Put) - (Admin Only)
+#### Update Product (Put)
 
 ```http
   https://i.mmsdev.site/api/v1/product/{id}
@@ -106,6 +154,7 @@
 | more_information | string  | **Nullable** text         |
 | photo            | string  | **Nullable** example.jpeg |
 
+###### Note : you could update your own product
 #### Delete Product (Delete) - (Admin Only)
 
 ```http
@@ -126,51 +175,12 @@
   https://i.mmsdev.site/api/vi/stock
 ```
 
-### Brand
+| Arguments  | Type    | Description     |
+| :--------- | :------ | :-------------- |
+| product_id | integer | **Required** 2  |
+| quantity   | integer | **Required** 10 |
 
-#### Brand (Get)
 
-```http
-  https://i.mmsdev.site/api/v1/brand
-```
-
-#### Single Brand (Get)
-
-```http
-  https://i.mmsdev.site/api/v1/brand/{id}
-```
-
-#### Create Brand (Post)
-
-```http
-  https://i.mmsdev.site/api/v1/brand
-```
-
-| Arguments   | Type    | Description               |
-| :---------- | :------ | :------------------------ |
-| name        | string  | **Required** example name |
-| company     | integer | **Required** company name |
-| information | number  | **Nullable** text         |
-| photo       | boolean | **Nullable** example.jpeg |
-
-#### Update Brand (Put) - (Admin Only)
-
-```http
-  https://i.mmsdev.site/api/v1/brand/{id}
-```
-
-| Arguments   | Type    | Description               |
-| :---------- | :------ | :------------------------ |
-| name        | string  | **Required** example name |
-| company     | integer | **Required** company name |
-| information | number  | **Nullable** text         |
-| photo       | boolean | **Nullable** example.jpeg |
-
-#### Delete Brand (Delete) - (Admin Only)
-
-```http
-  https://i.mmsdev.site/api/v1/brand/{id}
-```
 
 ## Sale
 
@@ -216,7 +226,7 @@
 
 ### Voucher Record
 
-#### Voucher Recorded Products(Post)
+#### Voucher Recorded Products (Post)
 
 ```http
   https://i.mmsdev.site/api/v1/voucher-record-products
@@ -249,7 +259,7 @@
 | product_id | integer | **Required** 1 |
 | quantity   | number  | **Required** 0 |
 
-#### Delete Voucher Record(Delete)
+#### Delete Voucher Record (Delete)
 
 ```http
   https://i.mmsdev.site/api/v1/voucher-record/{id}
