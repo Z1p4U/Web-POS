@@ -31,6 +31,7 @@ Route::prefix("v1")->group(function () {
         Route::apiResource("voucher", VoucherController::class);
         Route::apiResource("voucher-record", VoucherRecordController::class)->only(['store', 'destroy','update']);
         Route::post("voucher-record-products", [VoucherRecordController::class, 'showProductBasedOnVoucherNumber']);
+        Route::post("voucher-record-products-multiple", [VoucherRecordController::class, 'bulkStore']);
 
         Route::put("password-update", [PasswordController::class, 'update']);
 

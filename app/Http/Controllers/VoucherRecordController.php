@@ -59,6 +59,12 @@ class VoucherRecordController extends Controller
                 "message" => "out of stock"
             ]);
         }
+
+        // $existedProduct = VoucherRecord::where('product_id', $request->product_id)->first();
+        // if($existedProduct){
+        //     $existedProduct->quantity = $quantity;
+        // }
+
         $record = new VoucherRecord();
         $record->voucher_id = $request->voucher_id;
         $record->product_id = $request->product_id;
@@ -91,6 +97,18 @@ class VoucherRecordController extends Controller
             "message" => "your product is added to voucher.",
             "data" => $record
         ]);
+    }
+
+    public function bulkStore(Request $request)
+    {
+        $products = $request->products;
+        if (is_array($products)) {
+            foreach ($products as $product) {
+                return $product;
+            }
+        }
+
+        return "false";
     }
 
     /**
