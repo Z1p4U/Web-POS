@@ -17,8 +17,7 @@ class StockController extends Controller
      */
     public function index()
     {
-        $stocks = Stock::where("user_id", Auth::id())
-            ->latest("id")
+        $stocks = Stock::latest("id")
             ->paginate(10)
             ->withQueryString();
 
