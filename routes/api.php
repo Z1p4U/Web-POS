@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\VoucherController;
@@ -34,6 +35,8 @@ Route::prefix("v1")->group(function () {
         Route::post("voucher-record-products-multiple", [VoucherRecordController::class, 'bulkStore']);
 
         Route::put("password-update", [PasswordController::class, 'update']);
+
+        Route::post("check-out",[CheckoutController::class,'run']);
 
         Route::controller(AuthController::class)->group(function () {
             Route::post('register', "register");
