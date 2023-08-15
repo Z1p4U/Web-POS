@@ -5,7 +5,7 @@
 #### Login (Post)
 
 ```http
-  http://127.0.0.1:8000/api/v1/login
+  https://i.mmsdev.site/api/v1/login
 ```
 
 | Arguments | Type   | Description                  |
@@ -15,10 +15,10 @@
 
 ## User Profile
 
-#### Register (Post)
+#### Register (Post) - (Admin Only)
 
 ```http
-  http://127.0.0.1:8000/api/v1/register
+  https://i.mmsdev.site/api/v1/register
 ```
 
 | Arguments             | Type   | Description                  |
@@ -30,10 +30,10 @@
 | role                  | enum   | **Required** admin/staff     |
 | user_photo            | string | **Nullable** url()           |
 
-#### Password Update (Put)
+#### Password Update (Put) - (Admin Only)
 
 ```http
-  http://127.0.0.1:8000/api/v1/password-update
+  https://i.mmsdev.site/api/v1/password-update
 ```
 
 | Arguments             | Type   | Description           |
@@ -45,39 +45,87 @@
 #### Logout (Post)
 
 ```http
-  http://127.0.0.1:8000/api/v1/logout
+  https://i.mmsdev.site/api/v1/logout
 ```
 
-#### Logout from all devices(Post)
+#### Logout from all devices(Post) - (Admin Only)
 
 ```http
-  http://127.0.0.1:8000/api/v1/logout-all
+  https://i.mmsdev.site/api/v1/logout-all
 ```
 
 #### Get Devices (Get)
 
 ```http
-  http://127.0.0.1:8000/api/v1/devices
+  https://i.mmsdev.site/api/v1/devices
 ```
 
 ## Inventory
 
+### Brand
+
+#### Brand (Get)
+
+```http
+  https://i.mmsdev.site/api/v1/brand
+```
+
+#### Single Brand (Get)
+
+```http
+  https://i.mmsdev.site/api/v1/brand/{id}
+```
+
+#### Create Brand (Post)
+
+```http
+  https://i.mmsdev.site/api/v1/brand
+```
+
+| Arguments   | Type    | Description               |
+| :---------- | :------ | :------------------------ |
+| name        | string  | **Required** example name |
+| company     | integer | **Required** company name |
+| information | number  | **Nullable** text         |
+| photo       | boolean | **Nullable** example.jpeg |
+
+#### Update Brand (Put) 
+
+```http
+  https://i.mmsdev.site/api/v1/brand/{id}
+```
+
+| Arguments   | Type    | Description               |
+| :---------- | :------ | :------------------------ |
+| name        | string  | **Required** example name |
+| company     | integer | **Required** company name |
+| information | number  | **Nullable** text         |
+| photo       | boolean | **Nullable** example.jpeg |
+
+#### Delete Brand (Delete) - (Admin Only)
+
+```http
+  https://i.mmsdev.site/api/v1/brand/{id}
+```
+
+### Products
+
 #### Products (Get)
 
 ```http
-  http://127.0.0.1:8000/api/v1/product
+  https://i.mmsdev.site/api/v1/product
 ```
 
 #### Single Product (Get)
 
 ```http
-  http://127.0.0.1:8000/api/v1/product/{id}
+  https://i.mmsdev.site/api/v1/product/{id}
 ```
 
 #### Create Product (Post)
 
 ```http
-  http://127.0.0.1:8000/api/v1/product
+  https://i.mmsdev.site/api/v1/product
 ```
 
 | Arguments        | Type    | Description               |
@@ -93,7 +141,7 @@
 #### Update Product (Put)
 
 ```http
-  http://127.0.0.1:8000/api/v1/product/{id}
+  https://i.mmsdev.site/api/v1/product/{id}
 ```
 
 | Arguments        | Type    | Description               |
@@ -106,10 +154,11 @@
 | more_information | string  | **Nullable** text         |
 | photo            | string  | **Nullable** example.jpeg |
 
-#### Delete Product (Delete)
+###### Note : you could update your own product
+#### Delete Product (Delete) - (Admin Only)
 
 ```http
-  http://127.0.0.1:8000/api/v1/product/{id}
+  https://i.mmsdev.site/api/v1/product/{id}
 ```
 
 ### Stock
@@ -117,57 +166,105 @@
 #### Stock (Get)
 
 ```http
-  http://127.0.0.1:8000/api/v1/stock
+  https://i.mmsdev.site/api/v1/stock
 ```
 
 #### Create Stock (Post)
 
 ```http
-  http://127.0.0.1:8000/api/vi/stock
+  https://i.mmsdev.site/api/vi/stock
 ```
 
-### Brand
+| Arguments  | Type    | Description     |
+| :--------- | :------ | :-------------- |
+| product_id | integer | **Required** 2  |
+| quantity   | integer | **Required** 10 |
 
-#### Brand (Get)
+
+
+## Sale
+
+#### Voucher (Get)
 
 ```http
-  http://127.0.0.1:8000/api/v1/brand
+  https://i.mmsdev.site/api/v1/voucher
 ```
 
-#### Single Brand (Get)
+#### Single Voucher (Get)
 
 ```http
-  http://127.0.0.1:8000/api/v1/brand/{id}
+  https://i.mmsdev.site/api/v1/voucher/{id}
 ```
 
-#### Create Brand (Post)
+#### Create Voucher (Post)
 
 ```http
-  http://127.0.0.1:8000/api/v1/brand
+  https://i.mmsdev.site/api/v1/voucher
 ```
 
-| Arguments   | Type    | Description               |
-| :---------- | :------ | :------------------------ |
-| name        | string  | **Required** example name |
-| company     | integer | **Required** company name |
-| information | number  | **Nullable** text         |
-| photo       | boolean | **Nullable** example.jpeg |
+| Arguments | Type    | Description               |
+| :-------- | :------ | :------------------------ |
+| customer  | string  | **Nullable** example name |
+| phone     | integer | **Nullable** 091212212    |
 
-#### Update Brand (Put)
+<!-- #### Update Voucher (Put)
 
 ```http
-  http://127.0.0.1:8000/api/v1/brand/{id}
+  https://i.mmsdev.site/api/v1/voucher/{id}
 ```
 
-| Arguments   | Type    | Description               |
-| :---------- | :------ | :------------------------ |
-| name        | string  | **Required** example name |
-| company     | integer | **Required** company name |
-| information | number  | **Nullable** text         |
-| photo       | boolean | **Nullable** example.jpeg |
+| Arguments      | Type    | Description               |
+| :------------- | :------ | :------------------------ |
+| customer       | string  | **Nullable** example name |
+| phone          | integer | **Nullable** 091212212    | -->
 
-#### Delete Brand (Delete)
+#### Delete Voucher (Delete) - (Admin Only)
 
 ```http
-  http://127.0.0.1:8000/api/v1/brand/{id}
+  https://i.mmsdev.site/api/v1/voucher/{id}
 ```
+
+### Voucher Record
+
+#### Voucher Recorded Products (Post)
+
+```http
+  https://i.mmsdev.site/api/v1/voucher-record-products
+```
+
+| Arguments      | Type    | Description         |
+| :------------- | :------ | :------------------ |
+| voucher_number | integer | **Required** MjUke1 |
+
+#### Create Voucher Record (Post)
+
+```http
+  https://i.mmsdev.site/api/vi/voucher-record
+```
+
+| Arguments  | Type    | Description    |
+| :--------- | :------ | :------------- |
+| voucher_id | integer | **Required** 1 |
+| product_id | integer | **Required** 1 |
+| quantity   | number  | **Required** 0 |
+
+#### Update Voucher Record (Put)
+
+```http
+  https://i.mmsdev.site/api/vi/voucher-record/{id}
+```
+
+| Arguments  | Type    | Description    |
+| :--------- | :------ | :------------- |
+| product_id | integer | **Required** 1 |
+| quantity   | number  | **Required** 0 |
+
+#### Delete Voucher Record (Delete)
+
+```http
+  https://i.mmsdev.site/api/v1/voucher-record/{id}
+```
+
+| Arguments  | Type    | Description    |
+| :--------- | :------ | :------------- |
+| product_id | integer | **Required** 1 |

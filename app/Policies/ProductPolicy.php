@@ -10,7 +10,7 @@ class ProductPolicy
 
     public function before(User $user)
     {
-        if($user->role === "admin"){
+        if ($user->role === "admin") {
             return true;
         }
     }
@@ -51,9 +51,11 @@ class ProductPolicy
      */
     public function delete(User $user, Product $product): bool
     {
-        if($user->role === "admin"){
+        if ($user->role === "admin") {
             return true;
         }
+
+        return false;
     }
 
     /**

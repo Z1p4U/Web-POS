@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('voucher_id')->constrained()->cascadeOnDelete();
             $table->foreignId('product_id');
-            $table->integer('cost');
+            $table->integer('quantity');
+            $table->double('cost');
+            $table->double('price');
             $table->timestamps();
         });
     }

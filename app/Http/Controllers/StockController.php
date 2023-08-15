@@ -17,8 +17,7 @@ class StockController extends Controller
      */
     public function index()
     {
-        $stocks = Stock::where("user_id", Auth::id())
-            ->latest("id")
+        $stocks = Stock::latest("id")
             ->paginate(10)
             ->withQueryString();
 
@@ -46,7 +45,7 @@ class StockController extends Controller
         if (is_null($product)) {
             return response()->json([
                 "message" => "there is no product yet"
-            ]);
+            ],404);
         };
         $product->total_stock = $product->total_stock + $request->quantity;
         $product->update();

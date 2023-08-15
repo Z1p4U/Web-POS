@@ -27,9 +27,9 @@ class DatabaseSeeder extends Seeder
             PhotoSeeder::class,
             BrandSeeder::class,
             ProductSeeder::class,
-            VoucherSeeder::class,
-            // VoucherRecord::class,
-            // StockSeeder::class,
+            StockSeeder::class,
+            // VoucherSeeder::class,
+            // VoucherRecordSeeder::class,
         ]);
     }
 }

@@ -14,6 +14,7 @@ class BrandPolicy
         if($user->role === "admin"){
             return true;
         }
+        return false;
     }
     /**
      * Determine whether the user can view any models.
@@ -55,6 +56,8 @@ class BrandPolicy
         if($user->role === "admin"){
             return true;
         }
+
+        return false;
     }
 
     /**

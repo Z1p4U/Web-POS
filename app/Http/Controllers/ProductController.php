@@ -52,8 +52,10 @@ class ProductController extends Controller
         $product->actual_price = $request->actual_price;
         $product->sale_price = $request->sale_price;
         $product->unit = $request->unit;
+        $product->total_stock = 0;
         $product->more_information = $request->more_information;
-        $product->photo = Photo::find(1)->url;
+        // $product->photo = Photo::find(1)->url;
+        $product->photo = $request->photo;
 
         $product->save();
         return response()->json([
@@ -87,7 +89,12 @@ class ProductController extends Controller
             ]);
         };
 
-        $this->authorize('update', $product);
+        // $this->authorize('update', $product);
+        if (Gate::denies('update', $product)) {
+            return response()->json([
+                "message" => "you are no allowed"
+            ]);
+        }
 
         $product->name = $request->name;
         $product->brand_id = $request->brand_id;
@@ -115,7 +122,7 @@ class ProductController extends Controller
         if (is_null($product)) {
             return response()->json([
                 "message" => "there is no product to delete"
-            ]);
+            ], 404);
         }
         if (Gate::denies('delete', $product)) {
             return response()->json([

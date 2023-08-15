@@ -22,7 +22,9 @@ class StoreVoucherRecordRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            "voucher_id" => "required",
+            "product_id" => "required",
+            "quantity" => "required"
         ];
     }
 }

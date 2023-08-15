@@ -41,7 +41,8 @@ class BrandController extends Controller
             'company' => $request->company,
             'user_id' => Auth::id(),
             'information' => $request->information,
-            'photo' => Photo::find(1)->url,
+            // 'photo' => Photo::find(1)->url,
+            'photo' => $request->photo
         ]);
 
         return response()->json([
@@ -59,7 +60,7 @@ class BrandController extends Controller
         if (is_null($brand)) {
             return response()->json([
                 'message' => 'nothing to show',
-            ]);
+            ], 404);
         }
 
         return new BrandResource($brand);
@@ -75,7 +76,7 @@ class BrandController extends Controller
         if (is_null($brand)) {
             return response()->json([
                 'message' => 'nothing to show',
-            ]);
+            ], 404);
         }
 
         $brand->name = $request->name;
@@ -98,7 +99,7 @@ class BrandController extends Controller
         if (is_null($brand)) {
             return response()->json([
                 'message' => 'nothing to show',
-            ]);
+            ], 404);
         }
 
         if (Gate::denies('delete', $brand)) {

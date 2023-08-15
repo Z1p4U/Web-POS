@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('vouchers', function (Blueprint $table) {
             $table->id();
-            $table->string('customer')->default('unknown')->nullable();
+            $table->string('customer')->default('unknown');
             $table->string('phone')->nullable();
             $table->string('voucher_number');
-            $table->integer('total');
-            $table->integer('tax');
-            $table->integer('net_total');
+            $table->integer('total')->default(0);
+            $table->integer('tax')->default(0);
+            $table->integer('net_total')->default(0);
             $table->foreignId('user_id');
             $table->timestamps();
         });
