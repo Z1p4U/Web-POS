@@ -30,16 +30,17 @@ Route::prefix("v1")->group(function () {
         Route::apiResource("stock", StockController::class)->only(['index', 'store']);
         Route::apiResource("brand", BrandController::class);
         Route::apiResource("voucher", VoucherController::class);
-        Route::apiResource("voucher-record", VoucherRecordController::class)->only(['store', 'destroy','update']);
+        Route::apiResource("voucher-record", VoucherRecordController::class)->only(['store', 'destroy', 'update']);
         Route::post("voucher-record-products", [VoucherRecordController::class, 'showProductBasedOnVoucherNumber']);
         Route::post("voucher-record-products-multiple", [VoucherRecordController::class, 'bulkStore']);
 
         Route::put("password-update", [PasswordController::class, 'update']);
 
-        Route::post("check-out",[CheckoutController::class,'run']);
+        Route::post("check-out", [CheckoutController::class, 'run']);
 
         Route::controller(AuthController::class)->group(function () {
             Route::post('register', "register");
+            Route::put('edit', "edit");
             Route::post("logout", 'logout');
             Route::post("logout-all", 'logoutAll');
         });

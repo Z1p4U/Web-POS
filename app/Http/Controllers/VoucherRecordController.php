@@ -99,17 +99,17 @@ class VoucherRecordController extends Controller
         ]);
     }
 
-    public function bulkStore(Request $request)
-    {
-        $products = $request->products;
-        if (is_array($products)) {
-            foreach ($products as $product) {
-                return $product;
-            }
-        }
+    // public function bulkStore(Request $request)
+    // {
+    //     $products = $request->products;
+    //     if (is_array($products)) {
+    //         foreach ($products as $product) {
+    //             return $product;
+    //         }
+    //     }
 
-        return "false";
-    }
+    //     return "false";
+    // }
 
     /**
      * Display the specified resource.

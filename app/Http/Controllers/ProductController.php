@@ -52,6 +52,7 @@ class ProductController extends Controller
         $product->actual_price = $request->actual_price;
         $product->sale_price = $request->sale_price;
         $product->unit = $request->unit;
+        $product->total_stock = 0;
         $product->more_information = $request->more_information;
         // $product->photo = Photo::find(1)->url;
         $product->photo = $request->photo;

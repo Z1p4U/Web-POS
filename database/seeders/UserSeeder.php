@@ -19,14 +19,19 @@ class UserSeeder extends Seeder
             "name" => "admin",
             "email" => "admin@gmail.com",
             "password" => Hash::make("asdffdsa"),
-            "role" => "admin"
+            "role" => "admin",
+            "gender" => 'male'
         ]);
 
         User::factory()->create([
             "name" => "staff",
+            "phone" => "09777888666",
+            "date_of_birth" => "4.9.1998",
+            "gender" => "female",
+            "address" => "nay yar ma thi",
+            "role" => "staff",
             "email" => "staff@gmail.com",
             "password" => Hash::make("asdffdsa"),
-            "role" => "staff"
         ]);
     }
 }
