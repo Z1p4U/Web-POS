@@ -21,11 +21,11 @@ class PhotoController extends Controller
      */
     public function index()
     {
-        $photos = Photo::when(Auth::user()->role !== "admin", function($query){
+        $photos = Photo::when(Auth::user()->role !== "admin", function ($query) {
             $query->where("user_id", Auth::id());
         })->latest("id")->get();
 
-        if(empty($photos->toArray())){
+        if (empty($photos->toArray())) {
             return response()->json([
                 "message" => "there is no photo"
             ]);
@@ -68,7 +68,8 @@ class PhotoController extends Controller
      */
     public function show(Photo $photo)
     {
-        if(is_null($photo)){
+        $this->authorize('view', $photo);
+        if (is_null($photo)) {
             return response()->json([
                 "message" => "there is no photo"
             ]);
@@ -85,16 +86,47 @@ class PhotoController extends Controller
         // return $request;
     }
 
-    public function updateMultiplePhotos(Request $request)
+    public function deleteMultiplePhotos(Request $request)
     {
-        // return $request;
+        $photoId = $request->photos;
+        $photos = Photo::whereIn("id", $photoId)->get();
+        if (empty($photos)) {
+            return response()->json([
+                "message" => "There is no contacts to delete"
+            ]);
+        }
+
+        foreach ($photos as $photo) {
+            if (Auth::id() != $photo->user_id) {
+                return response()->json([
+                    'message' => "You are not allowed"
+                ]);
+            }
+        }
+        Photo::whereIn('id', $photoId)->delete();
+        Storage::delete($photos->pluck('url')->toArray());
+        return response()->json([
+            "message" => "photos deleted successfully"
+        ]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Photo $photo)
+    public function destroy(string $id)
     {
-        //
+
+        $photo = Photo::find($id);
+        $this->authorize('delete', $photo);
+        if (is_null($photo)) {
+            return response()->json([
+                "message" => "there is no photo"
+            ]);
+        }
+        $photo->delete();
+        Storage::delete($photo->url);
+        return response()->json([
+            "message" => "photo deleted successfully"
+        ]);
     }
 }

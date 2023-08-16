@@ -17,6 +17,7 @@ class PhotoResource extends JsonResource
     {
         // return parent::toArray($request);
         return [
+            "id" => $this->id,
             "url" => asset(Storage::url($this->url)),
             "user_name" => $this->user->name
         ];

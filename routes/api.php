@@ -35,7 +35,7 @@ Route::prefix("v1")->group(function () {
         Route::post("voucher-record-products", [VoucherRecordController::class, 'showProductBasedOnVoucherNumber']);
         Route::post("voucher-record-products-multiple", [VoucherRecordController::class, 'bulkStore']);
         Route::apiResource('photo', PhotoController::class);
-        // Route::post('multiple-update',[PhotoController::class,'updateMultiplePhotos']);
+        Route::post('multiple-delete',[PhotoController::class,'deleteMultiplePhotos']);
 
         Route::put("password-update", [PasswordController::class, 'update']);
 
@@ -43,6 +43,7 @@ Route::prefix("v1")->group(function () {
 
         Route::controller(AuthController::class)->group(function () {
             Route::post('register', "register");
+            Route::get('user-lists','showUserLists');
             Route::put('edit', "edit");
             Route::post("logout", 'logout');
             Route::post("logout-all", 'logoutAll');
