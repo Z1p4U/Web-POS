@@ -29,6 +29,15 @@ class AuthController extends Controller
         ]);
     }
 
+    public function getProfile()
+    {
+        $users = User::where("id", Auth::id())->latest("id")->get();
+
+        return response()->json([
+            "user-profile" => $users
+        ]);
+    }
+
     public function register(Request $request)
     {
         $request->validate([
