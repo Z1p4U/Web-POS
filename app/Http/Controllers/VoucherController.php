@@ -62,11 +62,10 @@ class VoucherController extends Controller
         // ]);
 
         $voucher = new Voucher();
-        $customer = "unknown";
+        // $customer = "unknown";
         if ($request->has('customer')) {
-            $customer = $request->customer;
+            $voucher->customer = $request->customer;
         }
-        $voucher->customer = $customer;
         $voucher->phone = $request->phone;
         $voucher->voucher_number = $randomString;
         $total = 0;

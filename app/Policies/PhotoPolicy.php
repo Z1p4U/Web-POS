@@ -8,6 +8,15 @@ use Illuminate\Auth\Access\Response;
 
 class PhotoPolicy
 {
+
+    public function before(User $user): bool
+    {
+        if ($user->role === 'admin') {
+            return true;
+        }
+
+        return false;
+    }
     /**
      * Determine whether the user can view any models.
      */
