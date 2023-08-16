@@ -26,7 +26,7 @@ class ProductResource extends JsonResource
             "total_stock" => $this->total_stock,
             "unit" => $this->unit,
             "more_information" => $this->more_information,
-            "photo" => Photo::find(1)->url,
+            "photo" => $this->photo,
             "updated_at" => $this->updated_at->format('d m Y'),
             "created_at" => $this->created_at->format('d m Y')
         ];

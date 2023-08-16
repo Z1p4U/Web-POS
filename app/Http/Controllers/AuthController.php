@@ -11,6 +11,13 @@ use Illuminate\Support\Facades\Password;
 
 class AuthController extends Controller
 {
+    public function showUserLists()
+    {
+        
+        $users = User::all();
+        return $users;
+    }
+
     public function register(Request $request)
     {
         $request->validate([
