@@ -24,11 +24,30 @@
 | Arguments             | Type   | Description                  |
 | :-------------------- | :----- | :--------------------------- |
 | name                  | sting  | **Required** Post Malone     |
+| phone                 | sting  | **Nullable** 0998989898      |
+| date_of_birth         | sting  | **nullable** dd/mm/yy        |
+| gender                | enum   | **Required** male/female     |
+| address               | sting  | **Nullable**                 |
 | email                 | sting  | **Required** admin@gmail.com |
 | password              | string | **Required** asdffdsa        |
 | password_confirmation | string | **Required** asdffdsa        |
 | role                  | enum   | **Required** admin/staff     |
 | user_photo            | string | **Nullable** url()           |
+
+#### Edit Profile (Put)
+
+```http
+  https://i.mmsdev.site/api/v1/edit
+```
+
+| Arguments     | Type   | Description              |
+| :------------ | :----- | :----------------------- |
+| name          | sting  | **Required** Post Malone |
+| phone         | sting  | **Nullable** 0998989898  |
+| date_of_birth | sting  | **nullable** dd/mm/yy    |
+| gender        | enum   | **Required** male/female |
+| address       | sting  | **Nullable**             |
+| user_photo    | string | **Nullable** url()       |
 
 #### Password Update (Put) - (Admin Only)
 
@@ -54,11 +73,61 @@
   https://i.mmsdev.site/api/v1/logout-all
 ```
 
+#### User List (Get) - (Admin Only)
+
+```http
+  https://i.mmsdev.site/api/v1/user-lists
+```
+
 #### Get Devices (Get)
 
 ```http
   https://i.mmsdev.site/api/v1/devices
 ```
+
+## Media
+
+### Photo
+
+#### Store Photo (Post)
+
+```http
+  https://i.mmsdev.site/api/v1/photo
+```
+
+| Arguments | Type  | Description     |
+| :-------- | :---- | :-------------- |
+| photos    | array | **Required** [] |
+
+#### Get Photo (Get)
+
+```http
+  https://i.mmsdev.site/api/v1/photo
+```
+
+#### Show Photo (Get)
+
+```http
+  https://i.mmsdev.site/api/v1/photo/{id}
+```
+
+#### Delete Photo (Del)
+
+```http
+  https://i.mmsdev.site/api/v1/photo/{id}
+```
+
+#### Multiple Photo Delete (Post)
+
+```http
+  https://i.mmsdev.site/api/v1/photo/multiple-delete
+```
+
+| Arguments | Type  | Description          |
+| :-------- | :---- | :------------------- |
+| photos    | array | **Required** [1,2,3] |
+
+###### Note : ID must be in Array.
 
 ## Inventory
 
@@ -89,7 +158,7 @@
 | information | number  | **Nullable** text         |
 | photo       | boolean | **Nullable** example.jpeg |
 
-#### Update Brand (Put) 
+#### Update Brand (Put)
 
 ```http
   https://i.mmsdev.site/api/v1/brand/{id}
@@ -155,6 +224,7 @@
 | photo            | string  | **Nullable** example.jpeg |
 
 ###### Note : you could update your own product
+
 #### Delete Product (Delete) - (Admin Only)
 
 ```http
@@ -179,8 +249,6 @@
 | :--------- | :------ | :-------------- |
 | product_id | integer | **Required** 2  |
 | quantity   | integer | **Required** 10 |
-
-
 
 ## Sale
 

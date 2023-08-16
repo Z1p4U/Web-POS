@@ -13,9 +13,20 @@ class AuthController extends Controller
 {
     public function showUserLists()
     {
-        
+        // $users = User::when(Auth::user()->role !== "admin", function ($query) {
+        //     $query->where("id", Auth::id());
+        // })->latest("id")->get();
+
+        if (Auth::user()->role !== "admin") {
+            return response()->json([
+                "message" => "You Are Not Allowed"
+            ]);
+        }
+
         $users = User::all();
-        return $users;
+        return response()->json([
+            "users" => $users
+        ]);
     }
 
     public function register(Request $request)
