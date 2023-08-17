@@ -5,7 +5,7 @@
 #### Login (Post)
 
 ```http
-https://b.mmsdev.site/api/v1/login
+https://g.mmsdev.site/api/v1/login
 ```
 
 | Arguments | Type   | Description                  |
@@ -18,13 +18,13 @@ https://b.mmsdev.site/api/v1/login
 #### User Profile (Get)
 
 ```http
-https://b.mmsdev.site/api/v1/user-profile
+https://g.mmsdev.site/api/v1/user-profile
 ```
 
 #### Register (Post) - (Admin Only)
 
 ```http
-https://b.mmsdev.site/api/v1/register
+https://g.mmsdev.site/api/v1/register
 ```
 
 | Arguments             | Type   | Description                  |
@@ -43,7 +43,7 @@ https://b.mmsdev.site/api/v1/register
 #### Edit Profile (Put)
 
 ```http
-https://b.mmsdev.site/api/v1/edit
+https://g.mmsdev.site/api/v1/edit
 ```
 
 | Arguments     | Type   | Description              |
@@ -58,7 +58,7 @@ https://b.mmsdev.site/api/v1/edit
 #### Password Update (Put) - (Admin Only)
 
 ```http
-https://b.mmsdev.site/api/v1/password-update
+https://g.mmsdev.site/api/v1/password-update
 ```
 
 | Arguments             | Type   | Description           |
@@ -70,37 +70,37 @@ https://b.mmsdev.site/api/v1/password-update
 #### Ban User (Post) - (Admin Only)
 
 ```http
-https://b.mmsdev.site/api/v1/user/{id}/ban
+https://g.mmsdev.site/api/v1/user/{id}/ban
 ```
 
 #### Unban User (Post) - (Admin Only)
 
 ```http
-https://b.mmsdev.site/api/v1/user/{id}/unban
+https://g.mmsdev.site/api/v1/user/{id}/unban
 ```
 
 #### Logout (Post)
 
 ```http
-https://b.mmsdev.site/api/v1/logout
+https://g.mmsdev.site/api/v1/logout
 ```
 
 #### Logout from all devices(Post) - (Admin Only)
 
 ```http
-https://b.mmsdev.site/api/v1/logout-all
+https://g.mmsdev.site/api/v1/logout-all
 ```
 
 #### User List (Get) - (Admin Only)
 
 ```http
-https://b.mmsdev.site/api/v1/user-lists
+https://g.mmsdev.site/api/v1/user-lists
 ```
 
 #### Get Devices (Get)
 
 ```http
-https://b.mmsdev.site/api/v1/devices
+https://g.mmsdev.site/api/v1/devices
 ```
 
 ## Media
@@ -110,7 +110,7 @@ https://b.mmsdev.site/api/v1/devices
 #### Store Photo (Post)
 
 ```http
-https://b.mmsdev.site/api/v1/photo
+https://g.mmsdev.site/api/v1/photo
 ```
 
 | Arguments | Type  | Description     |
@@ -120,25 +120,25 @@ https://b.mmsdev.site/api/v1/photo
 #### Get Photo (Get)
 
 ```http
-https://b.mmsdev.site/api/v1/photo
+https://g.mmsdev.site/api/v1/photo
 ```
 
 #### Show Photo (Get)
 
 ```http
-https://b.mmsdev.site/api/v1/photo/{id}
+https://g.mmsdev.site/api/v1/photo/{id}
 ```
 
 #### Delete Photo (Del)
 
 ```http
-https://b.mmsdev.site/api/v1/photo/{id}
+https://g.mmsdev.site/api/v1/photo/{id}
 ```
 
 #### Multiple Photo Delete (Post)
 
 ```http
-https://b.mmsdev.site/api/v1/photo/multiple-delete
+https://g.mmsdev.site/api/v1/photo/multiple-delete
 ```
 
 | Arguments | Type  | Description          |
@@ -154,19 +154,19 @@ https://b.mmsdev.site/api/v1/photo/multiple-delete
 #### Brand (Get)
 
 ```http
-https://b.mmsdev.site/api/v1/brand
+https://g.mmsdev.site/api/v1/brand
 ```
 
 #### Single Brand (Get)
 
 ```http
-https://b.mmsdev.site/api/v1/brand/{id}
+https://g.mmsdev.site/api/v1/brand/{id}
 ```
 
 #### Create Brand (Post)
 
 ```http
-https://b.mmsdev.site/api/v1/brand
+https://g.mmsdev.site/api/v1/brand
 ```
 
 | Arguments   | Type    | Description               |
@@ -179,7 +179,7 @@ https://b.mmsdev.site/api/v1/brand
 #### Update Brand (Put)
 
 ```http
-https://b.mmsdev.site/api/v1/brand/{id}
+https://g.mmsdev.site/api/v1/brand/{id}
 ```
 
 | Arguments   | Type    | Description               |
@@ -192,7 +192,7 @@ https://b.mmsdev.site/api/v1/brand/{id}
 #### Delete Brand (Delete) - (Admin Only)
 
 ```http
-https://b.mmsdev.site/api/v1/brand/{id}
+https://g.mmsdev.site/api/v1/brand/{id}
 ```
 
 ### Products
@@ -200,19 +200,19 @@ https://b.mmsdev.site/api/v1/brand/{id}
 #### Products (Get)
 
 ```http
-https://b.mmsdev.site/api/v1/product
+https://g.mmsdev.site/api/v1/product
 ```
 
 #### Single Product (Get)
 
 ```http
-https://b.mmsdev.site/api/v1/product/{id}
+https://g.mmsdev.site/api/v1/product/{id}
 ```
 
 #### Create Product (Post)
 
 ```http
-https://b.mmsdev.site/api/v1/product
+https://g.mmsdev.site/api/v1/product
 ```
 
 | Arguments        | Type    | Description               |
@@ -228,7 +228,7 @@ https://b.mmsdev.site/api/v1/product
 #### Update Product (Put)
 
 ```http
-https://b.mmsdev.site/api/v1/product/{id}
+https://g.mmsdev.site/api/v1/product/{id}
 ```
 
 | Arguments        | Type    | Description               |
@@ -246,7 +246,7 @@ https://b.mmsdev.site/api/v1/product/{id}
 #### Delete Product (Delete) - (Admin Only)
 
 ```http
-https://b.mmsdev.site/api/v1/product/{id}
+https://g.mmsdev.site/api/v1/product/{id}
 ```
 
 ### Stock
@@ -254,13 +254,13 @@ https://b.mmsdev.site/api/v1/product/{id}
 #### Stock (Get)
 
 ```http
-https://b.mmsdev.site/api/v1/stock
+https://g.mmsdev.site/api/v1/stock
 ```
 
 #### Create Stock (Post)
 
 ```http
-https://b.mmsdev.site/api/vi/stock
+https://g.mmsdev.site/api/vi/stock
 ```
 
 | Arguments  | Type    | Description     |
@@ -273,19 +273,19 @@ https://b.mmsdev.site/api/vi/stock
 #### Voucher (Get)
 
 ```http
-https://b.mmsdev.site/api/v1/voucher
+https://g.mmsdev.site/api/v1/voucher
 ```
 
 #### Single Voucher (Get)
 
 ```http
-https://b.mmsdev.site/api/v1/voucher/{id}
+https://g.mmsdev.site/api/v1/voucher/{id}
 ```
 
 #### Create Voucher (Post)
 
 ```http
-https://b.mmsdev.site/api/v1/voucher
+https://g.mmsdev.site/api/v1/voucher
 ```
 
 | Arguments | Type    | Description               |
@@ -296,7 +296,7 @@ https://b.mmsdev.site/api/v1/voucher
 <!-- #### Update Voucher (Put)
 
 ```http
-https://b.mmsdev.site/api/v1/voucher/{id}
+https://g.mmsdev.site/api/v1/voucher/{id}
 ```
 
 | Arguments      | Type    | Description               |
@@ -307,7 +307,7 @@ https://b.mmsdev.site/api/v1/voucher/{id}
 #### Delete Voucher (Delete) - (Admin Only)
 
 ```http
-https://b.mmsdev.site/api/v1/voucher/{id}
+https://g.mmsdev.site/api/v1/voucher/{id}
 ```
 
 ### Voucher Record
@@ -315,7 +315,7 @@ https://b.mmsdev.site/api/v1/voucher/{id}
 #### Voucher Recorded Products (Post)
 
 ```http
-https://b.mmsdev.site/api/v1/voucher-record-products
+https://g.mmsdev.site/api/v1/voucher-record-products
 ```
 
 | Arguments      | Type    | Description         |
@@ -325,7 +325,7 @@ https://b.mmsdev.site/api/v1/voucher-record-products
 #### Create Voucher Record (Post)
 
 ```http
-https://b.mmsdev.site/api/vi/voucher-record
+https://g.mmsdev.site/api/vi/voucher-record
 ```
 
 | Arguments  | Type    | Description    |
@@ -337,7 +337,7 @@ https://b.mmsdev.site/api/vi/voucher-record
 #### Update Voucher Record (Put)
 
 ```http
-https://b.mmsdev.site/api/vi/voucher-record/{id}
+https://g.mmsdev.site/api/vi/voucher-record/{id}
 ```
 
 | Arguments  | Type    | Description    |
@@ -348,7 +348,7 @@ https://b.mmsdev.site/api/vi/voucher-record/{id}
 #### Delete Voucher Record (Delete)
 
 ```http
-https://b.mmsdev.site/api/v1/voucher-record/{id}
+https://g.mmsdev.site/api/v1/voucher-record/{id}
 ```
 
 | Arguments  | Type    | Description    |
