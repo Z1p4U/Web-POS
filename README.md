@@ -67,6 +67,18 @@ https://b.mmsdev.site/api/v1/password-update
 | password              | string | **Required** asdffdsa |
 | password_confirmation | string | **Required** asdffdsa |
 
+#### Ban User (Post) - (Admin Only)
+
+```http
+https://b.mmsdev.site/api/v1/user/{id}/ban
+```
+
+#### Unban User (Post) - (Admin Only)
+
+```http
+https://b.mmsdev.site/api/v1/user/{id}/unban
+```
+
 #### Logout (Post)
 
 ```http

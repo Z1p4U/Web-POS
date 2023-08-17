@@ -19,6 +19,7 @@ return new class extends Migration
             $table->enum('gender', ['male', 'female'])->default('female');
             $table->string('address')->nullable();
             $table->enum('role', ['admin', 'staff'])->default('staff');
+            $table->boolean('banned')->default(false);
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
