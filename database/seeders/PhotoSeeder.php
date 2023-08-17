@@ -14,12 +14,12 @@ class PhotoSeeder extends Seeder
      */
     public function run(): void
     {
-        Photo::factory()->create([
-            "url" => config('info.default_contact_photo'),
-            "name" => config('info.default_photo_name'),
-            "ext" => config('info.ext'),
-            "user_id" => 1
-        ]);
+        // Photo::factory()->create([
+        //     "url" => config('info.default_contact_photo'),
+        //     "name" => config('info.default_photo_name'),
+        //     "ext" => config('info.ext'),
+        //     "user_id" => 1
+        // ]);
 
         $files = Storage::allFiles('public/photo');
         Storage::delete($files);

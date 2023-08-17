@@ -18,8 +18,12 @@ class PhotoResource extends JsonResource
         // return parent::toArray($request);
         return [
             "id" => $this->id,
+            "name" => $this->name,
             "url" => asset(Storage::url($this->url)),
-            "user_name" => $this->user->name
+            "user_name" => $this->user->name,
+            "size" => $this->size,
+            "created_at" => $this->created_at->format("d M Y"),
+            "updated_at" => $this->updated_at->format("d M Y"),
         ];
     }
 }

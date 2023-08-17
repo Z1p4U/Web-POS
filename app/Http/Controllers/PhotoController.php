@@ -37,19 +37,33 @@ class PhotoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+
+    private function formatBytes($bytes, $precision = 2)
+    {
+        $units = ['B', 'KB', 'MB', 'GB', 'TB'];
+
+        $bytes = max($bytes, 0);
+        $pow = floor(($bytes ? log($bytes) : 0) / log(1024));
+        $pow = min($pow, count($units) - 1);
+
+        return round($bytes, $precision) . ' ' . $units[$pow];
+    }
+
     public function store(StorePhotoRequest $request)
     {
         if ($request->hasFile('photos')) {
             $photos = $request->file('photos');
             $savedPhotos = [];
             foreach ($photos as $photo) {
-                $name = md5(pathinfo($photo->getClientOriginalName(), PATHINFO_FILENAME));
+                $fileSize = $photo->getSize();
+                $name = pathinfo($photo->getClientOriginalName(), PATHINFO_FILENAME);
                 $savedPhoto = $photo->store("public/photo");
                 $savedPhotos[] = [
                     "url" => $savedPhoto,
                     "name" => $name,
                     "ext" => $photo->extension(),
                     "user_id" => Auth::id(),
+                    "size" => $this->formatBytes($fileSize),
                     "created_at" => now(),
                     "updated_at" => now()
 

@@ -61,6 +61,7 @@ class AuthController extends Controller
             "gender" => $request->gender,
             "address" => $request->address,
             'role' => $request->role,
+            "banned" => false,
             "email" => $request->email,
             "password" => Hash::make($request->password),
             "user_photo" => $request->user_photo
@@ -148,6 +149,27 @@ class AuthController extends Controller
             "device_name" => $token->accessToken->name,
             "token" => $token->plainTextToken
         ]);
+    }
+
+
+    public function banUser(Request $request, $id)
+    {
+        Gate::authorize("admin-only");
+        $user = User::find($id);
+        $user->banned = true;
+        $user->update();
+
+        return response()->json(['message' => 'User has been banned']);
+    }
+
+    public function unbanUser(Request $request, $id)
+    {
+        Gate::authorize("admin-only");
+        $user = User::find($id);
+        $user->banned = false;
+        $user->update();
+
+        return response()->json(['message' => 'User has been unbanned']);
     }
 
     public function logout(Request $request)

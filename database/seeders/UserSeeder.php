@@ -20,6 +20,7 @@ class UserSeeder extends Seeder
             "email" => "admin@gmail.com",
             "password" => Hash::make("asdffdsa"),
             "role" => "admin",
+            "banned" => false,
             "gender" => 'male'
         ]);
 
@@ -30,6 +31,7 @@ class UserSeeder extends Seeder
             "gender" => "female",
             "address" => "nay yar ma thi",
             "role" => "staff",
+            "banned" => false,
             "email" => "staff@gmail.com",
             "password" => Hash::make("asdffdsa"),
         ]);
