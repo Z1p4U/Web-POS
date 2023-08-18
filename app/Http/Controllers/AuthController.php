@@ -34,7 +34,7 @@ class AuthController extends Controller
         $users = User::where("id", Auth::id())->latest("id")->get();
 
         return response()->json([
-            "user-profile" => $users
+            "user" => $users
         ]);
     }
 
