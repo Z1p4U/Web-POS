@@ -29,12 +29,28 @@ class AuthController extends Controller
         ]);
     }
 
-    public function getProfile()
+    public function getYourProfile()
     {
         $users = User::where("id", Auth::id())->latest("id")->get();
 
         return response()->json([
             "user" => $users
+        ]);
+    }
+
+    public function checkUserProfile($id)
+    {
+        $user = User::find($id);
+
+        if (is_null($user)) {
+            return response()->json([
+                "error" => "User not found"
+            ], 404);
+        }
+
+        return response()->json([
+            "message" => "User",
+            "users" => $user
         ]);
     }
 

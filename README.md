@@ -15,10 +15,16 @@ https://g.mmsdev.site/api/v1/login
 
 ## User Profile
 
-#### User Profile (Get)
+#### Your Profile (Get)
 
 ```http
-https://g.mmsdev.site/api/v1/user-profile
+https://g.mmsdev.site/api/v1/profile
+```
+
+#### Get User Profile (Get)
+
+```http
+https://g.mmsdev.site/api/v1/check-profile/{id}
 ```
 
 #### Register (Post) - (Admin Only)
