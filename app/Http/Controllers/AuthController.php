@@ -31,10 +31,11 @@ class AuthController extends Controller
 
     public function getYourProfile()
     {
-        $users = User::where("id", Auth::id())->latest("id")->get();
+        // $ = User::where("id", Auth::id())->latest("id")->get();
+        $user = Auth::user();
 
         return response()->json([
-            "user" => $users
+            "user" => $user
         ]);
     }
 
@@ -49,8 +50,7 @@ class AuthController extends Controller
         }
 
         return response()->json([
-            "message" => "User",
-            "users" => $user
+            "user" => $user
         ]);
     }
 
