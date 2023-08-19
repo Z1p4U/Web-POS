@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('company');
-            $table->string('information')->nullable();
+            $table->string('agent');
+            $table->string('phone');
+            $table->string('description')->nullable();
             $table->foreignId('user_id');
             $table->string('photo')->nullable();
             $table->timestamps();

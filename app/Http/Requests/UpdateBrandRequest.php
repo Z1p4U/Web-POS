@@ -24,7 +24,9 @@ class UpdateBrandRequest extends FormRequest
         return [
             "name" => "required|unique:brands,name",
             "company" => "required",
-            "information" => "nullable",
+            "agent" => 'required',
+            "phone" => 'required',
+            "description" => "nullable",
             "photo" => "nullable"
         ];
     }
