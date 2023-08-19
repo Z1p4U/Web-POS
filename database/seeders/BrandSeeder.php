@@ -20,7 +20,9 @@ class BrandSeeder extends Seeder
             $arr[] = [
                 "name" => $brand,
                 "company" => $brand,
-                "information" => "contact our company",
+                "agent" => $brand . " agent",
+                'phone' => '0987746837',
+                "description" => "contact our company",
                 "photo" => "There is no photo",
                 // "user_id" => User::where("role","admin")->get()->random()->id,
                 "user_id" => 1,

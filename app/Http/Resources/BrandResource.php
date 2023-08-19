@@ -19,8 +19,10 @@ class BrandResource extends JsonResource
             "id" => $this->id,
             "name" => $this->name,
             "company" => $this->company,
+            "agent" => $this->agent,
+            "phone" => $this->phone,
             "user_id" => $this->user_id,
-            "information" =>  $this->information,
+            "description" =>  $this->description,
             "photo" => $this->photo,
             "created_at" => $this->created_at->format('d m Y'),
             "updated_at" => $this->updated_at->format('d m Y')
