@@ -175,14 +175,14 @@ https://g.mmsdev.site/api/v1/brand/{id}
 https://g.mmsdev.site/api/v1/brand
 ```
 
-| Arguments   | Type    | Description               |
-| :---------- | :------ | :------------------------ |
-| name        | string  | **Required** example name |
-| company     | integer | **Required** company name |
-| agent       | integer | **Required** agent name   |
-| phone       | integer | **Required** 098746553    |
-| description | number  | **Nullable** text         |
-| photo       | boolean | **Nullable** example.jpeg |
+| Arguments   | Type   | Description               |
+| :---------- | :----- | :------------------------ |
+| name        | string | **Required** example name |
+| company     | string | **Required** company name |
+| agent       | string | **Required** agent name   |
+| phone       | string | **Required** 098746553    |
+| description | string | **Nullable** text         |
+| photo       | string | **Nullable** example.jpeg |
 
 #### Update Brand (Put)
 
@@ -190,14 +190,14 @@ https://g.mmsdev.site/api/v1/brand
 https://g.mmsdev.site/api/v1/brand/{id}
 ```
 
-| Arguments   | Type    | Description               |
-| :---------- | :------ | :------------------------ |
-| name        | string  | **Required** example name |
-| company     | integer | **Required** company name |
-| agent       | integer | **Required** agent name   |
-| phone       | integer | **Required** 098746553    |
-| description | number  | **Nullable** text         |
-| photo       | boolean | **Nullable** example.jpeg |
+| Arguments   | Type   | Description               |
+| :---------- | :----- | :------------------------ |
+| name        | string | **Required** example name |
+| company     | string | **Required** company name |
+| agent       | string | **Required** agent name   |
+| phone       | string | **Required** 098746553    |
+| description | string | **Nullable** text         |
+| photo       | string | **Nullable** example.jpeg |
 
 #### Delete Brand (Delete) - (Admin Only)
 
@@ -230,7 +230,7 @@ https://g.mmsdev.site/api/v1/product
 | name             | string  | **Required** example name |
 | brand_id         | integer | **Required** 2            |
 | actual_price     | number  | **Required** 500          |
-| sale_price       | boolean | **Required** 600          |
+| sale_price       | number | **Required** 600          |
 | unit             | string  | **Required** 1            |
 | more_information | string  | **Nullable** text         |
 | photo            | string  | **Nullable** example.jpeg |
@@ -245,8 +245,8 @@ https://g.mmsdev.site/api/v1/product/{id}
 | :--------------- | :------ | :------------------------ |
 | name             | string  | **Required** example name |
 | brand_id         | integer | **Required** 2            |
-| actual_price     | number  | **Required** 500          |
-| sale_price       | boolean | **Required** 600          |
+| actual_price     | integer  | **Required** 500          |
+| sale_price       | integer | **Required** 600          |
 | unit             | string  | **Required** 1            |
 | more_information | string  | **Nullable** text         |
 | photo            | string  | **Nullable** example.jpeg |
