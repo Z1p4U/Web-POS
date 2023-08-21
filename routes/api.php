@@ -9,6 +9,7 @@ use App\Http\Controllers\VoucherController;
 use App\Http\Controllers\VoucherRecordController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\PhotoController;
+use App\Http\Middleware\AcceptJson;
 use App\Http\Middleware\CheckUserBanned;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -27,7 +28,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix("v1")->group(function () {
 
-    Route::middleware('auth:sanctum')->group(function () {
+    Route::middleware(['auth:sanctum', AcceptJson::class])->group(function () {
         Route::middleware(CheckUserBanned::class)->group(function () {
 
             Route::apiResource("product", ProductController::class);
