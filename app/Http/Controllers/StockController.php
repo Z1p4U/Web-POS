@@ -17,7 +17,14 @@ class StockController extends Controller
      */
     public function index()
     {
-        $stocks = Stock::latest("id")
+        $products = Product::when(request()->has("keyword"), function ($query) {
+            $query->where(function (Builder $builder) {
+                $keyword = request()->keyword;
+
+                $builder->where("name", "LIKE", "%" . $keyword . "%");
+            });
+        });
+        $stocks = Stock::whereIn('product_id', $products->pluck('id'))->latest("id")
             ->paginate(10)
             ->withQueryString();
 
@@ -45,7 +52,7 @@ class StockController extends Controller
         if (is_null($product)) {
             return response()->json([
                 "message" => "there is no product yet"
-            ],404);
+            ], 404);
         };
         $product->total_stock = $product->total_stock + $request->quantity;
         $product->update();

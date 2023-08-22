@@ -22,9 +22,7 @@ class ProductController extends Controller
         $products = Product::when(request()->has("keyword"), function ($query) {
             $query->where(function (Builder $builder) {
                 $keyword = request()->keyword;
-
                 $builder->where("name", "LIKE", "%" . $keyword . "%");
-                $builder->orWhere("brand", "LIKE", "%" . $keyword . "%");
             });
         })
             ->latest("id")
