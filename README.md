@@ -230,7 +230,7 @@ https://g.mmsdev.site/api/v1/product
 | name             | string  | **Required** example name |
 | brand_id         | integer | **Required** 2            |
 | actual_price     | number  | **Required** 500          |
-| sale_price       | number | **Required** 600          |
+| sale_price       | number  | **Required** 600          |
 | unit             | string  | **Required** 1            |
 | more_information | string  | **Nullable** text         |
 | photo            | string  | **Nullable** example.jpeg |
@@ -245,7 +245,7 @@ https://g.mmsdev.site/api/v1/product/{id}
 | :--------------- | :------ | :------------------------ |
 | name             | string  | **Required** example name |
 | brand_id         | integer | **Required** 2            |
-| actual_price     | integer  | **Required** 500          |
+| actual_price     | integer | **Required** 500          |
 | sale_price       | integer | **Required** 600          |
 | unit             | string  | **Required** 1            |
 | more_information | string  | **Nullable** text         |
@@ -277,6 +277,7 @@ https://g.mmsdev.site/api/vi/stock
 | :--------- | :------ | :-------------- |
 | product_id | integer | **Required** 2  |
 | quantity   | integer | **Required** 10 |
+| more       | string  | **Nullable** 10 |
 
 ## Sale
 
