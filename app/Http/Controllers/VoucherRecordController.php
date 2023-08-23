@@ -6,6 +6,7 @@ use App\Models\VoucherRecord;
 use App\Http\Requests\StoreVoucherRecordRequest;
 use App\Http\Requests\UpdateVoucherRecordRequest;
 use App\Http\Resources\VoucherRecordResource;
+use App\Http\Resources\VoucherResource;
 use App\Models\Product;
 use App\Models\Voucher;
 use Illuminate\Http\Request;
@@ -44,7 +45,7 @@ class VoucherRecordController extends Controller
                 "message" => "there is no records"
             ]);
         }
-        return VoucherRecordResource::collection($records->voucherRecords);
+        return new VoucherResource($records);
     }
 
     /**

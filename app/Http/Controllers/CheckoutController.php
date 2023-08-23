@@ -24,6 +24,12 @@ class CheckoutController extends Controller
             $total = 0;
 
             foreach ($request->items as $item) {
+                $currentProduct = $products->find($item["product_id"]);
+                if (is_null($currentProduct)) {
+                    return response()->json([
+                        "message" => "there is no product"
+                    ]);
+                }
                 $total += $item["quantity"] * $products->find($item["product_id"])->sale_price;
             }
 
