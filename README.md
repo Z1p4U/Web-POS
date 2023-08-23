@@ -281,6 +281,17 @@ https://g.mmsdev.site/api/vi/stock
 
 ## Sale
 
+#### Checkout (Get)
+
+```https
+https://g.mmsdev.site/api/v1/check-out
+```
+
+| Arguments  | Type    | Description     |
+| :--------- | :------ | :-------------- |
+| product_id | integer | **Required** 2  |
+| quantity   | integer | **Required** 10 |
+
 #### Voucher (Get)
 
 ```https
@@ -293,7 +304,17 @@ https://g.mmsdev.site/api/v1/voucher
 https://g.mmsdev.site/api/v1/voucher/{id}
 ```
 
-#### Create Voucher (Post)
+#### Get Voucher by Voucher Number (Post)
+
+```https
+https://g.mmsdev.site/api/v1/voucher-record-products
+```
+
+| Arguments      | Type   | Description         |
+| :------------- | :----- | :------------------ |
+| voucher_number | string | **Required** MjUke1 |
+
+<!-- #### Create Voucher (Post)
 
 ```https
 https://g.mmsdev.site/api/v1/voucher
@@ -302,7 +323,7 @@ https://g.mmsdev.site/api/v1/voucher
 | Arguments | Type    | Description               |
 | :-------- | :------ | :------------------------ |
 | customer  | string  | **Nullable** example name |
-| phone     | integer | **Nullable** 091212212    |
+| phone     | integer | **Nullable** 091212212    | -->
 
 <!-- #### Update Voucher (Put)
 
@@ -321,6 +342,7 @@ https://g.mmsdev.site/api/v1/voucher/{id}
 https://g.mmsdev.site/api/v1/voucher/{id}
 ```
 
+<!--
 ### Voucher Record
 
 #### Voucher Recorded Products (Post)
@@ -364,4 +386,4 @@ https://g.mmsdev.site/api/v1/voucher-record/{id}
 
 | Arguments  | Type    | Description    |
 | :--------- | :------ | :------------- |
-| product_id | integer | **Required** 1 |
+| product_id | integer | **Required** 1 | -->

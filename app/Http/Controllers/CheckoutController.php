@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\VoucherResource;
 use App\Models\Product;
 use App\Models\Voucher;
 use App\Models\VoucherRecord;
@@ -73,7 +74,10 @@ class CheckoutController extends Controller
             // return $request;
 
             DB::commit();
-            return response()->json(['message' => 'checkout successfully']);
+            return response()->json([
+                'message' => 'checkout successfully',
+                "data" => new VoucherResource($voucher)
+            ]);
         } catch (\Exception $e) {
             DB::rollback();
             return response()->json(['message' => 'Transaction failed.', 'error' => $e->getMessage()], 500);

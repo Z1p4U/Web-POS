@@ -24,9 +24,10 @@ class VoucherResource extends JsonResource
             "total" => $this->total,
             "tax" => $this->tax,
             "net_total" => $this->net_total,
-            "user_id" => $this->user_id,
+            "user_name" => $this->user->name,
             "records" => $this->voucherRecords,
             "created_at" => $this->created_at->format("d m Y"),
+            "created_time" => $this->created_at->format("h:m A"),
             "updated_at" => $this->updated_at->format("d m Y"),
         ];
         // return [
