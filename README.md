@@ -281,7 +281,7 @@ https://g.mmsdev.site/api/vi/stock
 
 ## Sale
 
-#### Checkout (Get)
+#### Checkout (Post)
 
 ```https
 https://g.mmsdev.site/api/v1/check-out
