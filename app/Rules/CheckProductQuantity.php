@@ -18,7 +18,7 @@ class CheckProductQuantity implements ValidationRule
         foreach ($value as $item) {
             $product = Product::find($item['product_id']);
             if (!$product || $product->total_stock < $item['quantity']) {
-                $fail($product->name . 'is out of stock');
+                $fail($product->name . ' is out of stock');
             }
         }
     }
