@@ -18,7 +18,7 @@ class ProductFactory extends Factory
     {
         $price = rand(400,1500);
         return [
-            "name" => fake()->name(),
+            "name" => fake()->word(),
             "brand_id" => rand(1,5),
             "user_id" => 1,
             "actual_price" => $price,

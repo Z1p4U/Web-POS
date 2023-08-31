@@ -6,7 +6,11 @@ use App\Models\Voucher;
 use App\Http\Requests\StoreVoucherRequest;
 use App\Http\Requests\UpdateVoucherRequest;
 use App\Http\Resources\VoucherResource;
+use App\Models\VoucherRecord;
+use Carbon\Carbon;
+use Carbon\CarbonPeriod;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
@@ -15,21 +19,30 @@ class VoucherController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $voucher = Voucher::when(request()->has("keyword"), function ($query) {
-            $query->where(function (Builder $builder) {
-                $keyword = request()->keyword;
 
-                $builder->where("name", "LIKE", "%" . $keyword . "%");
-                $builder->orWhere("brand", "LIKE", "%" . $keyword . "%");
-            });
-        })
-            ->latest("id")
+        $date = $request->has('date') ? $request->date : now();
+        $dailyVoucher = Voucher::WhereDate('created_at', $date)->get();
+        $totalVoucher = $dailyVoucher->count('id');
+        $total = $dailyVoucher->sum('total');
+        $taxTotal = $dailyVoucher->sum('tax');
+        $netTotal = $dailyVoucher->sum('net_total');
+
+        $voucher = Voucher::WhereDate('created_at', $date)->latest("id")
             ->paginate(10)
             ->withQueryString();
 
-        return VoucherResource::collection($voucher);
+        return response()->json([
+            "daily_total_sale" => [
+                "total_voucher" => $totalVoucher,
+                "total_cash" => $total,
+                "total_tax" => $taxTotal,
+                "total" => $netTotal
+            ],
+            "data" => VoucherResource::collection($voucher),
+
+        ]);
     }
 
     /**

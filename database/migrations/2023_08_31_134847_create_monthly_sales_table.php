@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('stocks', function (Blueprint $table) {
+        Schema::create('monthly_sales', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
-            $table->foreignId('product_id');
-            $table->unsignedBigInteger('quantity');
-            $table->string('more')->nullable();
+            $table->string('total_voucher');
+            $table->string('total_cash');
+            $table->string('tax_total');
+            $table->string('total');
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('stocks');
+        Schema::dropIfExists('monthly_sales');
     }
 };
