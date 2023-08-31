@@ -25,10 +25,12 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserSeeder::class,
             PhotoSeeder::class,
-            // BrandSeeder::class,
-            // ProductSeeder::class,
-            // StockSeeder::class,
-            // VoucherSeeder::class,
+            BrandSeeder::class,
+            ProductSeeder::class,
+            StockSeeder::class,
+            SaleSeeder::class,
+            VoucherSeeder::class,
+            DailySaleSeeder::class,
             // VoucherRecordSeeder::class,
         ]);
     }

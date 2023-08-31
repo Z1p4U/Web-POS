@@ -9,8 +9,10 @@ use App\Http\Controllers\VoucherController;
 use App\Http\Controllers\VoucherRecordController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\PhotoController;
+use App\Http\Controllers\SaleController;
 use App\Http\Middleware\AcceptJson;
 use App\Http\Middleware\CheckUserBanned;
+use App\Http\Middleware\SaleClosedCheck;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -35,15 +37,19 @@ Route::prefix("v1")->group(function () {
             Route::apiResource("stock", StockController::class)->only(['index', 'store']);
             Route::apiResource("brand", BrandController::class);
             Route::apiResource("voucher", VoucherController::class);
-            Route::apiResource("voucher-record", VoucherRecordController::class)->only(['store', 'destroy', 'update']);
-            Route::post("voucher-record-products", [VoucherRecordController::class, 'showProductBasedOnVoucherNumber']);
+            Route::apiResource("voucher-record", VoucherRecordController::class)->only(['store', 'destroy', 'update'])->middleware(SaleClosedCheck::class);
+            Route::post("voucher-record-products", [VoucherRecordController::class, 'showProductBasedOnVoucherNumber'])->middleware(SaleClosedCheck::class);
             Route::post("voucher-record-products-multiple", [VoucherRecordController::class, 'bulkStore']);
             Route::apiResource('photo', PhotoController::class)->only(['index', "store", "show", "destroy"]);
             Route::post('photo/multiple-delete', [PhotoController::class, 'deleteMultiplePhotos']);
 
             Route::put("password-update", [PasswordController::class, 'update']);
 
-            Route::post("check-out", [CheckoutController::class, 'run']);
+            Route::post("check-out", [CheckoutController::class, 'run'])->middleware(SaleClosedCheck::class);
+            Route::controller(SaleController::class)->group(function () {
+                Route::post('sale-close', 'saleClose');
+                Route::post('sale-open', 'openSale');
+            });
         });
 
         Route::controller(AuthController::class)->group(function () {

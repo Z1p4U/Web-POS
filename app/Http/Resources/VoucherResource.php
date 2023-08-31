@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\VoucherRecord;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -15,7 +16,7 @@ class VoucherResource extends JsonResource
     public function toArray(Request $request): array
     {
         // return parent::toArray($request);
-
+        $date = $request->has('date') ? $request->date : now();
         return [
             "id" => $this->id,
             "customer" => $this->customer,
@@ -25,10 +26,11 @@ class VoucherResource extends JsonResource
             "tax" => $this->tax,
             "net_total" => $this->net_total,
             "user_name" => $this->user->name,
-            "records" => VoucherRecordResource::collection($this->voucherRecords),
-            "created_at" => $this->created_at->format("d m Y"),
+            "item_count" => VoucherRecordResource::collection(VoucherRecord::whereDate("created_at", $date)->where('voucher_id', $this->id)->get())->count('id'),
+            "records" => VoucherRecordResource::collection(VoucherRecord::whereDate("created_at", $date)->where('voucher_id', $this->id)->get()),
+            "created_at" => $this->created_at->format("d M Y"),
             "created_time" => $this->created_at->format("h:m A"),
-            "updated_at" => $this->updated_at->format("d m Y"),
+            "updated_at" => $this->updated_at->format("d M Y"),
         ];
         // return [
         //     "id" => $this->id,
