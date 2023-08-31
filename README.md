@@ -298,6 +298,8 @@ https://g.mmsdev.site/api/v1/check-out
 https://g.mmsdev.site/api/v1/voucher
 ```
 
+###### Note: you can search by date
+
 #### Single Voucher (Get)
 
 ```https
@@ -314,76 +316,22 @@ https://g.mmsdev.site/api/v1/voucher-record-products
 | :------------- | :----- | :------------------ |
 | voucher_number | string | **Required** MjUke1 |
 
-<!-- #### Create Voucher (Post)
-
-```https
-https://g.mmsdev.site/api/v1/voucher
-```
-
-| Arguments | Type    | Description               |
-| :-------- | :------ | :------------------------ |
-| customer  | string  | **Nullable** example name |
-| phone     | integer | **Nullable** 091212212    | -->
-
-<!-- #### Update Voucher (Put)
-
-```https
-https://g.mmsdev.site/api/v1/voucher/{id}
-```
-
-| Arguments      | Type    | Description               |
-| :------------- | :------ | :------------------------ |
-| customer       | string  | **Nullable** example name |
-| phone          | integer | **Nullable** 091212212    | -->
-
 #### Delete Voucher (Delete) - (Admin Only)
 
 ```https
 https://g.mmsdev.site/api/v1/voucher/{id}
 ```
 
-<!--
-### Voucher Record
+### Finance
 
-#### Voucher Recorded Products (Post)
-
-```https
-https://g.mmsdev.site/api/v1/voucher-record-products
-```
-
-| Arguments      | Type    | Description         |
-| :------------- | :------ | :------------------ |
-| voucher_number | integer | **Required** MjUke1 |
-
-#### Create Voucher Record (Post)
+#### Sale Close (Post)
 
 ```https
-https://g.mmsdev.site/api/vi/voucher-record
+https://g.mmsdev.site/api/v1/sale-close
 ```
 
-| Arguments  | Type    | Description    |
-| :--------- | :------ | :------------- |
-| voucher_id | integer | **Required** 1 |
-| product_id | integer | **Required** 1 |
-| quantity   | number  | **Required** 0 |
-
-#### Update Voucher Record (Put)
+#### Sale Open (Post)
 
 ```https
-https://g.mmsdev.site/api/vi/voucher-record/{id}
+https://g.mmsdev.site/api/v1/sale-open
 ```
-
-| Arguments  | Type    | Description    |
-| :--------- | :------ | :------------- |
-| product_id | integer | **Required** 1 |
-| quantity   | number  | **Required** 0 |
-
-#### Delete Voucher Record (Delete)
-
-```https
-https://g.mmsdev.site/api/v1/voucher-record/{id}
-```
-
-| Arguments  | Type    | Description    |
-| :--------- | :------ | :------------- |
-| product_id | integer | **Required** 1 | -->

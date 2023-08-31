@@ -17,7 +17,7 @@ class VoucherSeeder extends Seeder
     public function run(): void
     {
         $endDate = Carbon::now();
-        $startDate = Carbon::now()->subYear(2);
+        $startDate = Carbon::now()->subYear();
 
         $period = CarbonPeriod::create($startDate, $endDate);
         $id = 1;

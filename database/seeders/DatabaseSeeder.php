@@ -31,6 +31,7 @@ class DatabaseSeeder extends Seeder
             SaleSeeder::class,
             VoucherSeeder::class,
             DailySaleSeeder::class,
+            // MonthlySaleSeeder::class,
             // VoucherRecordSeeder::class,
         ]);
     }

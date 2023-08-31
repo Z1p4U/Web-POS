@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\FinanceController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\VoucherController;
@@ -49,6 +50,10 @@ Route::prefix("v1")->group(function () {
             Route::controller(SaleController::class)->group(function () {
                 Route::post('sale-close', 'saleClose');
                 Route::post('sale-open', 'openSale');
+            });
+
+            Route::controller(FinanceController::class)->group(function () {
+                Route::post('monthly-sale', 'monthlySale');
             });
         });
 
