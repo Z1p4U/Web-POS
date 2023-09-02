@@ -16,11 +16,10 @@ class MonthlySaleSeeder extends Seeder
      */
     public function run(): void
     {
-        $startOfMonth = Carbon::now()->subYear();
-        $endOfMonth = $startOfMonth->copy()->endOfMonth();
-        $year = $startOfMonth->year;
+        $startOfMonth = Carbon::create(2022, 9, 1);
         $sales = [];
-        for ($i = $startOfMonth->month; Carbon::create($year, $startOfMonth->month, 1) != Carbon::now()->month; $i++) {
+        for ($i = 1; $startOfMonth->format("M Y") != Carbon::now()->format("M Y"); $i++) {
+            $endOfMonth = $startOfMonth->copy()->endOfMonth();
             $dailyVoucher = DailySale::whereBetween('created_at', [$startOfMonth, $endOfMonth])->get();
             $totalVoucher = $dailyVoucher->sum('total_voucher');
             $cashTotal = $dailyVoucher->sum('total_cash');

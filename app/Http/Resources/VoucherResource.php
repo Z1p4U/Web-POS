@@ -16,7 +16,7 @@ class VoucherResource extends JsonResource
     public function toArray(Request $request): array
     {
         // return parent::toArray($request);
-        $date = $request->has('date') ? $request->date : now();
+        $date = $request->has('date') ? $request->date : $this->created_at;
         return [
             "id" => $this->id,
             "customer" => $this->customer,

@@ -17,7 +17,7 @@ class DailySaleSeeder extends Seeder
     public function run(): void
     {
         $endDate = Carbon::now();
-        $startDate = Carbon::now()->subYear();
+        $startDate = Carbon::create(2022, 9, 1);
 
         $period = CarbonPeriod::create($startDate, $endDate);
         $DailyTotalSale = [];
