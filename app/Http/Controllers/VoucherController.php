@@ -33,6 +33,7 @@ class VoucherController extends Controller
             ->paginate(10)
             ->withQueryString();
 
+        $data =  VoucherResource::collection($voucher);
         return response()->json([
             "daily_total_sale" => [
                 "total_voucher" => $totalVoucher,
@@ -40,7 +41,7 @@ class VoucherController extends Controller
                 "total_tax" => $taxTotal,
                 "total" => $netTotal
             ],
-            "data" => VoucherResource::collection($voucher),
+            "data" => $data->resource,
 
         ]);
     }

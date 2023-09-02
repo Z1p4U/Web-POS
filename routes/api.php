@@ -54,6 +54,8 @@ Route::prefix("v1")->group(function () {
 
             Route::controller(FinanceController::class)->group(function () {
                 Route::post('monthly-sale', 'monthlySale');
+                Route::post('yearly-sale','yearlySale');
+                Route::post('custom-search-by-day','customSearch');
             });
         });
 

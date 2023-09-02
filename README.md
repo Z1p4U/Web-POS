@@ -300,6 +300,10 @@ https://g.mmsdev.site/api/v1/voucher
 
 ###### Note: you can search by date
 
+| Arguments | Type | Description           |
+| :-------- | :--- | :-------------------- |
+| date      | date | **Search** 2022-08-09 |
+
 #### Single Voucher (Get)
 
 ```https
@@ -335,3 +339,50 @@ https://g.mmsdev.site/api/v1/sale-close
 ```https
 https://g.mmsdev.site/api/v1/sale-open
 ```
+
+#### Monthly Sale (Post)
+
+```https
+https://g.mmsdev.site/api/v1/monthly-sale
+```
+
+###### Note: you can search by date
+
+| Id  | Month    | Id  | Month     |
+| :-- | :------- | :-- | :-------- |
+| 1   | January  | 7   | July      |
+| 2   | February | 8   | August    |
+| 3   | March    | 9   | September |
+| 4   | April    | 10  | October   |
+| 5   | May      | 11  | November  |
+| 6   | June     | 12  | December  |
+
+| Arguments | Type | Description     |
+| :-------- | :--- | :-------------- |
+| month     | date | **Search** 7    |
+| year      | date | **Search** 2022 |
+
+#### Yearly Sale (Post)
+
+```https
+https://g.mmsdev.site/api/v1/yearly-sale
+```
+
+###### Note: you can search by date
+
+| Arguments | Type | Description     |
+| :-------- | :--- | :-------------- |
+| year      | date | **Search** 2022 |
+
+#### Custom Search By Date (Post)
+
+```https
+https://g.mmsdev.site/api/v1/custom-search-by-day
+```
+
+###### Note: you can search by date
+
+| Arguments | Type | Description           |
+| :-------- | :--- | :-------------------- |
+| from      | date | **Search** 2022-09-06 |
+| to        | date | **Search** 2022-11-09 |

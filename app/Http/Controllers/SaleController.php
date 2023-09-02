@@ -37,6 +37,7 @@ class SaleController extends Controller
 
 
         return response()->json([
+            "data" => $saleClose,
             "message" => "Sale closed successfully"
         ]);
     }
@@ -53,6 +54,7 @@ class SaleController extends Controller
         $saleClose->update();
 
         return response()->json([
+            "data" => $saleClose,
             "message" => "Opened Sale"
         ]);
     }

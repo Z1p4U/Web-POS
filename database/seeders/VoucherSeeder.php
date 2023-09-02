@@ -17,7 +17,7 @@ class VoucherSeeder extends Seeder
     public function run(): void
     {
         $endDate = Carbon::now();
-        $startDate = Carbon::now()->subYear();
+        $startDate = Carbon::create(2022,9,1);
 
         $period = CarbonPeriod::create($startDate, $endDate);
         $id = 1;
@@ -57,7 +57,7 @@ class VoucherSeeder extends Seeder
                 $tax = $total * 0.05;
                 $netTotal = $total + $tax;
                 $vouchers[] = [
-                    "voucher_number" => (2 * $index) + 45,
+                    "voucher_number" => $id,
                     "total" => $total,
                     "tax" => $tax,
                     "net_total" => $netTotal,
