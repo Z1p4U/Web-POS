@@ -340,7 +340,7 @@ https://g.mmsdev.site/api/v1/sale-close
 https://g.mmsdev.site/api/v1/sale-open
 ```
 
-#### Monthly Sale (Post)
+#### Monthly Sale (Get)
 
 ```https
 https://g.mmsdev.site/api/v1/monthly-sale
@@ -362,7 +362,7 @@ https://g.mmsdev.site/api/v1/monthly-sale
 | month     | date | **Search** 7    |
 | year      | date | **Search** 2022 |
 
-#### Yearly Sale (Post)
+#### Yearly Sale (Get)
 
 ```https
 https://g.mmsdev.site/api/v1/yearly-sale
@@ -374,7 +374,7 @@ https://g.mmsdev.site/api/v1/yearly-sale
 | :-------- | :--- | :-------------- |
 | year      | date | **Search** 2022 |
 
-#### Custom Search By Date (Post)
+#### Custom Search By Date (Get)
 
 ```https
 https://g.mmsdev.site/api/v1/custom-search-by-day
