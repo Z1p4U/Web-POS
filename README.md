@@ -213,6 +213,15 @@ https://g.mmsdev.site/api/v1/brand/{id}
 https://g.mmsdev.site/api/v1/product
 ```
 
+#### Sorting by id and name
+
+###### Asc is default. So you don't have to pass asc as a description. Just pass keyword id or name. If you want descending , pass **desc**
+
+| Arguments | Type   | Description       |
+| :-------- | :----- | :---------------- |
+| id        | string | **Nullable** asc  |
+| name      | string | **Nullable** desc |
+
 #### Single Product (Get)
 
 ```https
@@ -266,6 +275,14 @@ https://g.mmsdev.site/api/v1/product/{id}
 ```https
 https://g.mmsdev.site/api/v1/stock
 ```
+
+#### Sorting by id
+
+###### Asc is default. So you don't have to pass asc as a description. Just pass keyword id .
+
+| Arguments | Type   | Description      |
+| :-------- | :----- | :--------------- |
+| id        | string | **Nullable** asc |
 
 #### Create Stock (Post)
 
@@ -340,7 +357,7 @@ https://g.mmsdev.site/api/v1/sale-close
 https://g.mmsdev.site/api/v1/sale-open
 ```
 
-#### Monthly Sale (Get)
+#### Monthly Sale (Get) (Admin Only)
 
 ```https
 https://g.mmsdev.site/api/v1/monthly-sale
@@ -362,7 +379,7 @@ https://g.mmsdev.site/api/v1/monthly-sale
 | month     | date | **Search** 7    |
 | year      | date | **Search** 2022 |
 
-#### Yearly Sale (Get)
+#### Yearly Sale (Get) (Admin Only)
 
 ```https
 https://g.mmsdev.site/api/v1/yearly-sale
@@ -374,7 +391,7 @@ https://g.mmsdev.site/api/v1/yearly-sale
 | :-------- | :--- | :-------------- |
 | year      | date | **Search** 2022 |
 
-#### Custom Search By Date (Get)
+#### Custom Search By Date (Get) (Admin Only)
 
 ```https
 https://g.mmsdev.site/api/v1/custom-search-by-day
