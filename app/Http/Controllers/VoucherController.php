@@ -23,6 +23,9 @@ class VoucherController extends Controller
     {
 
         $date = $request->has('date') ? $request->date : now();
+        if (Auth::user()->role !== 'admin') {
+            $date = now();
+        }
         $dailyVoucher = Voucher::WhereDate('created_at', $date)->get();
         $totalVoucher = $dailyVoucher->count('id');
         $total = $dailyVoucher->sum('total');
@@ -34,6 +37,9 @@ class VoucherController extends Controller
             ->withQueryString();
 
         $data =  VoucherResource::collection($voucher);
+
+
+
         return response()->json([
             "daily_total_sale" => [
                 "total_voucher" => $totalVoucher,

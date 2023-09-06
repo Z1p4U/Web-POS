@@ -24,6 +24,12 @@ class ProductController extends Controller
                 $keyword = request()->keyword;
                 $builder->where("name", "LIKE", "%" . $keyword . "%");
             });
+        })->when(request()->has('id'), function ($query) {
+            $sortType = request()->id ?? 'asc';
+            $query->orderBy("id", $sortType);
+        })->when(request()->has('name'), function ($query) {
+            $sortType = request()->name ? 'desc' : 'asc';
+            $query->orderBy("name", $sortType);
         })
             ->latest("id")
             ->paginate(10)

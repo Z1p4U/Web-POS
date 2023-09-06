@@ -52,7 +52,7 @@ Route::prefix("v1")->group(function () {
                 Route::post('sale-open', 'openSale');
             });
 
-            Route::controller(FinanceController::class)->group(function () {
+            Route::controller(FinanceController::class)->middleware('can:admin-only')->group(function () {
                 Route::get('monthly-sale', 'monthlySale');
                 Route::get('yearly-sale','yearlySale');
                 Route::get('custom-search-by-day','customSearch');

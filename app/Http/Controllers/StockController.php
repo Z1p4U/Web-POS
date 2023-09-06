@@ -24,7 +24,11 @@ class StockController extends Controller
                 $builder->where("name", "LIKE", "%" . $keyword . "%");
             });
         });
-        $stocks = Stock::whereIn('product_id', $products->pluck('id'))->latest("id")
+        $stocks = Stock::whereIn('product_id', $products->pluck('id'))
+            ->when(request()->has('id'), function ($query) {
+                $sortType = request()->id ?? 'asc';
+                $query->orderBy("id", $sortType);
+            })->latest("id")
             ->paginate(10)
             ->withQueryString();
 
@@ -33,7 +37,6 @@ class StockController extends Controller
                 "message" => "There is no products yet"
             ]);
         }
-
         return StockResource::collection($stocks);
     }
 

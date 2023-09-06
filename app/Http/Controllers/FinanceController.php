@@ -13,6 +13,7 @@ class FinanceController extends Controller
 {
     public function monthlySale(Request $request)
     {
+
         $year = $request->year; // Replace with the desired year
         $month = $request->month;
         $startOfMonth =  Carbon::create($year, $month, 1);
@@ -37,6 +38,7 @@ class FinanceController extends Controller
 
     public function yearlySale(Request $request)
     {
+
         $year = Carbon::create($request->year);
         $monthlyVoucher = MonthlySale::whereYear('created_at', $year)->get();
         $totalVoucher = $monthlyVoucher->sum('total_voucher');
@@ -56,6 +58,7 @@ class FinanceController extends Controller
 
     public function customSearch(Request $request)
     {
+
         $from = $request->has('from') ? $request->from : Carbon::now()->setDay(1);
         $to = $request->has('to') ? $request->to : now();
         $dailyVoucher = Voucher::whereBetween('created_at', [$from, $to])->get();
