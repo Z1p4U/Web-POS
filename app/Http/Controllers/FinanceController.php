@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\SaleDetailResource;
 use App\Http\Resources\VoucherResource;
 use App\Models\DailySale;
 use App\Models\MonthlySale;
@@ -19,11 +20,12 @@ class FinanceController extends Controller
         $startOfMonth =  Carbon::create($year, $month, 1);
         $endOfMonth = $startOfMonth->copy()->endOfMonth();
         $dailyVoucher = DailySale::whereBetween('created_at', [$startOfMonth, $endOfMonth]);
-        // return $dailyVoucher;
         $totalVoucher = $dailyVoucher->sum('total_voucher');
         $cashTotal = $dailyVoucher->sum('total_cash');
         $taxTotal = $dailyVoucher->sum('tax_total');
         $total = $dailyVoucher->sum('total');
+        $totalSale = $dailyVoucher->paginate(10)->withQueryString();
+        SaleDetailResource::collection($totalSale);
 
         return response()->json([
             "monthly_total_sale" => [
@@ -32,7 +34,7 @@ class FinanceController extends Controller
                 "total_tax" => $taxTotal,
                 "total" => $total
             ],
-            'data' => $dailyVoucher->paginate(10)->withQueryString()
+            'data' => $totalSale
         ]);
     }
 
@@ -45,6 +47,7 @@ class FinanceController extends Controller
         $cashTotal = $monthlyVoucher->sum('total_cash');
         $taxTotal = $monthlyVoucher->sum('tax_total');
         $total = $monthlyVoucher->sum('total');
+        $data = SaleDetailResource::collection($monthlyVoucher);
         return response()->json([
             "yearly_sale" => [
                 "total_voucher" => $totalVoucher,
@@ -52,7 +55,7 @@ class FinanceController extends Controller
                 "total_tax" => $taxTotal,
                 "total" => $total
             ],
-            'data' => $monthlyVoucher
+            'data' => $data->resource
         ]);
     }
 
