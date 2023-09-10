@@ -15,4 +15,9 @@ class Brand extends Model
     {
         return $this->hasMany(Product::class);
     }
+
+    public function voucherRecords()
+    {
+        return $this->hasManyThrough(VoucherRecord::class, Product::class);
+    }
 }

@@ -22,9 +22,9 @@ class ProductFactory extends Factory
             "brand_id" => rand(1,5),
             "user_id" => 1,
             "actual_price" => $price,
-            "sale_price" => $price + 200,
+            "sale_price" => $price + 1000,
             "total_stock" => 0,
-            "unit" => 1,
+            "unit" => "piece",
         ];
     }
 }

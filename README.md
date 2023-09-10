@@ -10,7 +10,7 @@ https://g.mmsdev.site/api/v1/login
 
 | Arguments | Type   | Description                  |
 | :-------- | :----- | :--------------------------- |
-| email     | sting  | **Required** admin@gmail.com |
+| email     | string | **Required** admin@gmail.com |
 | password  | string | **Required** asdffdsa        |
 
 ## User Profile
@@ -278,7 +278,7 @@ https://g.mmsdev.site/api/v1/stock
 
 #### Sorting by id
 
-###### Asc is default. So you don't have to pass asc as a description. Just pass keyword id .
+###### Asc is default. So you don't have to pass asc as a description. Just pass argument id .
 
 | Arguments | Type   | Description      |
 | :-------- | :----- | :--------------- |
@@ -403,3 +403,55 @@ https://g.mmsdev.site/api/v1/custom-search-by-day
 | :-------- | :--- | :-------------------- |
 | from      | date | **Search** 2022-09-06 |
 | to        | date | **Search** 2022-11-09 |
+
+### Report
+
+#### Overview (Get)
+
+```https
+https://g.mmsdev.site/api/v1/report/overview
+```
+
+###### Just need to pass **Arguments**.
+
+| Arguments | Type | Description    |
+| :-------- | :--- | :------------- |
+| month     | date | **Nullable** - |
+| year      | date | **Nullable** - |
+
+#### Sale Report (Get)
+
+```https
+https://g.mmsdev.site/api/v1/report/sale
+```
+
+###### Just need to pass **Arguments**.
+
+###### For sorting just need to pass **Arguments** as price. If you pass, it will show min price to max price by sorting.
+
+| Arguments | Type | Description    |
+| :-------- | :--- | :------------- |
+| month     | date | **Nullable** - |
+| year      | date | **Nullable** - |
+| price     | date | **Nullable** - |
+
+#### Stock Brand Report (Get)
+
+```https
+https://g.mmsdev.site/api/v1/report/brand
+```
+
+#### Stock Report (Get)
+
+```https
+https://g.mmsdev.site/api/v1/report/stock
+```
+
+###### Just need to pass **Arguments**. Also, you can search by keyword.
+
+| Arguments    | Type | Description              |
+| :----------- | :--- | :----------------------- |
+| in-stock     | date | **Nullable** -           |
+| low-stock    | date | **Nullable** -           |
+| out-of-stock | date | **Nullable** -           |
+| keyword      | date | **Nullable** productName |

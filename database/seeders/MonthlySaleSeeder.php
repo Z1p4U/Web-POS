@@ -22,11 +22,13 @@ class MonthlySaleSeeder extends Seeder
             $endOfMonth = $startOfMonth->copy()->endOfMonth();
             $dailyVoucher = DailySale::whereBetween('created_at', [$startOfMonth, $endOfMonth])->get();
             $totalVoucher = $dailyVoucher->sum('total_voucher');
+            $totalActualPrice = $dailyVoucher->sum('total_actual_price');
             $cashTotal = $dailyVoucher->sum('total_cash');
             $taxTotal = $dailyVoucher->sum('tax_total');
             $total = $dailyVoucher->sum('total');
             $sales[] = [
                 "total_voucher" => $totalVoucher,
+                "total_actual_price" => $totalActualPrice,
                 "total_cash"  => $cashTotal,
                 "tax_total" => $taxTotal,
                 "total" => $total,

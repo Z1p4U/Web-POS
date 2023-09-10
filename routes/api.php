@@ -10,6 +10,7 @@ use App\Http\Controllers\VoucherController;
 use App\Http\Controllers\VoucherRecordController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\PhotoController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SaleController;
 use App\Http\Middleware\AcceptJson;
 use App\Http\Middleware\CheckUserBanned;
@@ -54,8 +55,15 @@ Route::prefix("v1")->group(function () {
 
             Route::controller(FinanceController::class)->middleware('can:admin-only')->group(function () {
                 Route::get('monthly-sale', 'monthlySale');
-                Route::get('yearly-sale','yearlySale');
-                Route::get('custom-search-by-day','customSearch');
+                Route::get('yearly-sale', 'yearlySale');
+                Route::get('custom-search-by-day', 'customSearch');
+            });
+
+            Route::prefix('report')->controller(ReportController::class)->group(function () {
+                Route::get('overview', "overview");
+                Route::get('sale', "saleReport");
+                Route::get('brand', 'brandReport');
+                Route::get('stock', 'stockReport');
             });
         });
 
