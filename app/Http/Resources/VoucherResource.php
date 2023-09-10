@@ -22,6 +22,7 @@ class VoucherResource extends JsonResource
             "customer" => $this->customer,
             "phone" => $this->phone,
             "voucher_number" => $this->voucher_number,
+            "total_actual_price" => $this->total_actual_price,
             "total" => $this->total,
             "tax" => $this->tax,
             "net_total" => $this->net_total,

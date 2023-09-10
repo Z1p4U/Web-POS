@@ -10,7 +10,7 @@ https://g.mmsdev.site/api/v1/login
 
 | Arguments | Type   | Description                  |
 | :-------- | :----- | :--------------------------- |
-| email     | sting  | **Required** admin@gmail.com |
+| email     | string  | **Required** admin@gmail.com |
 | password  | string | **Required** asdffdsa        |
 
 ## User Profile

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('monthly_sales', function (Blueprint $table) {
             $table->id();
             $table->string('total_voucher');
+            $table->string('total_actual_price');
             $table->string('total_cash');
             $table->string('tax_total');
             $table->string('total');

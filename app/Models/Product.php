@@ -28,7 +28,7 @@ class Product extends Model
 
     public function VoucherRecord()
     {
-        return $this->hasOne(VoucherRecord::class);
+        return $this->hasMany(VoucherRecord::class);
     }
 
     public function vouchers()

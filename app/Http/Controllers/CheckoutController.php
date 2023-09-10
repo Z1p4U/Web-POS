@@ -21,6 +21,7 @@ class CheckoutController extends Controller
             // Perform database operations here
             $productIds = collect($request->items)->pluck("product_id");
             $products = Product::whereIn("id", $productIds)->get(); // use database
+            $totalActualPrice = 0;
             $total = 0;
 
             foreach ($request->items as $item) {
@@ -30,9 +31,9 @@ class CheckoutController extends Controller
                         "message" => "there is no product"
                     ]);
                 }
-                $total += $item["quantity"] * $products->find($item["product_id"])->sale_price;
+                $totalActualPrice += $item["quantity"] * $currentProduct->actual_price;
+                $total += $item["quantity"] * $currentProduct->sale_price;
             }
-
             $tax = $total * 0.05;
             $netTotal = $total + $tax;
 
@@ -43,9 +44,9 @@ class CheckoutController extends Controller
             for ($i = 0; $i < 8; $i++) {
                 $randomString .= $characters[rand(0, $charactersLength - 1)];
             }
-
             $voucher = Voucher::create([
                 "voucher_number" => $randomString,
+                "total_actual_price" => $totalActualPrice,
                 "total" => $total,
                 "tax" => $tax,
                 "net_total" => $netTotal,
@@ -64,7 +65,8 @@ class CheckoutController extends Controller
                 $records[] = [
                     "voucher_id" => $voucher->id,
                     "product_id" => $item["product_id"],
-                    "price" => $products->find($item["product_id"])->sale_price,
+                    "actual_price" => $currentProduct->actual_price,
+                    "price" => $currentProduct->sale_price,
                     "quantity" => $item["quantity"],
                     "cost" => $item["quantity"] * $currentProduct->sale_price,
                     "created_at" => now(),

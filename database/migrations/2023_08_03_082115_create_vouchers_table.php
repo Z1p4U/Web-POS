@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('customer')->default('unknown');
             $table->string('phone')->nullable();
             $table->string('voucher_number');
+            $table->integer('total_actual_price')->default(0);
             $table->integer('total')->default(0);
             $table->integer('tax')->default(0);
             $table->integer('net_total')->default(0);
