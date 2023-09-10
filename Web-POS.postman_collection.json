@@ -240,6 +240,21 @@
 									"query": [
 										{
 											"key": "keyword",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "name",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "page",
+											"value": "2",
+											"disabled": true
+										},
+										{
+											"key": "id",
 											"value": null,
 											"disabled": true
 										}
@@ -462,6 +477,11 @@
 											"key": "keyword",
 											"value": "glo",
 											"disabled": true
+										},
+										{
+											"key": "id",
+											"value": null,
+											"disabled": true
 										}
 									]
 								}
@@ -537,7 +557,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{base_url}}/voucher?date=2023-08-8",
+									"raw": "{{base_url}}/voucher?date=2022-09-01",
 									"host": [
 										"{{base_url}}"
 									],
@@ -552,7 +572,7 @@
 										},
 										{
 											"key": "date",
-											"value": "2023-08-8"
+											"value": "2022-09-01"
 										}
 									]
 								}
@@ -698,7 +718,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"items\" : [\r\n        {\r\n            \"product_id\" : 8,\r\n            \"quantity\" : 1\r\n        },\r\n        {\r\n            \"product_id\" : 9,\r\n            \"quantity\" : 1\r\n        },\r\n        {\r\n            \"product_id\" : 6,\r\n            \"quantity\" : 1\r\n        }\r\n    ]\r\n}",
+									"raw": "{\r\n    \"items\" : [\r\n        {\r\n            \"product_id\" : 9,\r\n            \"quantity\" : 10\r\n        }\r\n    ]\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -801,7 +821,7 @@
 									"formdata": [
 										{
 											"key": "voucher_number",
-											"value": "728",
+											"value": "BKCuDt1o",
 											"type": "text"
 										}
 									]
@@ -1436,9 +1456,16 @@
 							"name": "monthly-sale",
 							"request": {
 								"method": "GET",
-								"header": [],
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text",
+										"disabled": true
+									}
+								],
 								"url": {
-									"raw": "{{base_url}}/monthly-sale",
+									"raw": "{{base_url}}/monthly-sale?month=8&year=2023",
 									"host": [
 										"{{base_url}}"
 									],
@@ -1448,17 +1475,15 @@
 									"query": [
 										{
 											"key": "month",
-											"value": "9",
-											"disabled": true
+											"value": "8"
 										},
 										{
 											"key": "year",
-											"value": "2022",
-											"disabled": true
+											"value": "2023"
 										},
 										{
 											"key": "page",
-											"value": "3",
+											"value": "4",
 											"disabled": true
 										}
 									]
@@ -1472,7 +1497,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{base_url}}/yearly-sale?year=2022",
+									"raw": "{{base_url}}/yearly-sale",
 									"host": [
 										"{{base_url}}"
 									],
@@ -1482,7 +1507,8 @@
 									"query": [
 										{
 											"key": "year",
-											"value": "2022"
+											"value": "2022",
+											"disabled": true
 										}
 									]
 								}
@@ -1495,7 +1521,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{base_url}}/custom-search-by-day",
+									"raw": "{{base_url}}/custom-search-by-day?from=2022-09-01&to=2022-10-29",
 									"host": [
 										"{{base_url}}"
 									],
@@ -1505,12 +1531,169 @@
 									"query": [
 										{
 											"key": "from",
-											"value": "2022-09-01",
-											"disabled": true
+											"value": "2022-09-01"
 										},
 										{
 											"key": "to",
-											"value": "2022-10-29",
+											"value": "2022-10-29"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Report",
+					"item": [
+						{
+							"name": "overview",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/report/overview",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"report",
+										"overview"
+									],
+									"query": [
+										{
+											"key": "year",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "month",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "sale",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "month",
+											"value": "",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "year",
+											"value": "",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "price",
+											"value": "",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}/report/sale",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"report",
+										"sale"
+									],
+									"query": [
+										{
+											"key": "month",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "year",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "price",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "brand",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/report/brand",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"report",
+										"brand"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "stock",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/report/stock",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"report",
+										"stock"
+									],
+									"query": [
+										{
+											"key": "in-stock",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "low-stock",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "out-of-stock",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "page",
+											"value": "2",
+											"disabled": true
+										},
+										{
+											"key": "keyword",
+											"value": "et",
 											"disabled": true
 										}
 									]
@@ -1526,7 +1709,7 @@
 				"bearer": [
 					{
 						"key": "token",
-						"value": "aTsjwsCSbogMQcWnV8GtfUfuTtDFdJgI2EO83l5v",
+						"value": "7AJnysMM5gORlb887SnCPXyUCDO8olIYgY2nemN5",
 						"type": "string"
 					}
 				]

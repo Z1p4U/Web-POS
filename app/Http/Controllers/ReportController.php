@@ -49,6 +49,8 @@ class ReportController extends Controller
             "totalStaff" => $totalStaff,
             "total" => $total,
             "total_profit" => $totalProfit,
+            "total_income" => $total,
+            "total_expense" => $totalActualPrice,
             "total_sales" => $totalSale,
         ]);
     }
@@ -63,30 +65,12 @@ class ReportController extends Controller
 
         // Brand total Sale
         // Default date
-        $startDate = $startOfDay;
-        $endDate = $endOfDay;
+        $brandDate = null;
         if ($request->has('month')) {
-            $startDate = Carbon::now()->startOfMonth();
-            $endDate = $startDate->copy()->endOfMonth();
+            $brandDate = "month";
         }
         if ($request->has('year')) {
-            $startDate = Carbon::now()->startOfYear();
-            $endDate = $startDate->copy()->endOfYear();
-        }
-        $brands = Brand::get()->pluck('name', 'id')->toArray();
-        $totalBrand = [];
-        foreach ($brands as $brandId => $brandName) {
-            // Get best seller brand
-            $saleBrand = VoucherRecord::whereBetween('created_at', [$startDate, $endDate])
-                ->whereHas('product', function ($query) use ($brandId) {
-                    $query->where('brand_id', $brandId);
-                })
-                ->get();
-
-            $totalBrand[] = [
-                "brand_name" => $brandName,
-                "total_brand_sale" => $saleBrand->sum('quantity')
-            ];
+            $brandDate = "year";
         }
 
         // Yearly Sale Chart
@@ -131,7 +115,7 @@ class ReportController extends Controller
                 "today_min_sale" => $todayMinSale,
             ],
 
-            "brand_sales" => $totalBrand,
+            "brand_sales" => $this->brandSales($brandDate),
 
             "sales" => [
                 "total" => $total,
@@ -149,9 +133,6 @@ class ReportController extends Controller
     {
         $totalProducts = Product::all()->count('id');
         $totalBrands = Brand::all()->count('id');
-
-
-
         $totalProducts = Product::all()->count('id');
         $inStock = Product::where('total_stock', '>', 100)->get()->count('id');
         $lowStock = Product::whereBetween('total_stock', [1, 100])->get()->count('id');
@@ -197,17 +178,17 @@ class ReportController extends Controller
         return CheckStockLevelResource::collection($products);
     }
 
-
+    // REUSABLE FUNCTION
     // Brand Sales depends on Date
     private function brandSales($date = null)
     {
         $startDate = Carbon::now()->startOfWeek();
         $endDate = $startDate->copy()->endOfWeek();
-        if ($date) {
+        if ($date === 'month') {
             $startDate = Carbon::now()->startOfMonth();
             $endDate = $startDate->copy()->endOfMonth();
         }
-        if ($date) {
+        if ($date == 'year') {
             $startDate = Carbon::now()->startOfYear();
             $endDate = $startDate->copy()->endOfYear();
         }
