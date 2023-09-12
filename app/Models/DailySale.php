@@ -9,5 +9,5 @@ class DailySale extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['total_voucher', 'total_cash', 'tax_total', 'total'];
+    protected $fillable = ['total_voucher', 'total_actual_price',  'total_cash', 'tax_total', 'total'];
 }
