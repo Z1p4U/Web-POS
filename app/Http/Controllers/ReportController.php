@@ -27,7 +27,6 @@ class ReportController extends Controller
         $startOfDay =  Carbon::now()->startOfWeek();
         $endOfDay = $startOfDay->copy()->endOfWeek();
         $totalSale = DailySale::whereBetween('created_at', [$startOfDay, $endOfDay])->get();
-        return $totalSale;
         // Yearly Sale Chart
         if ($request->has('year')) {
             $totalSale =  MonthlySale::whereYear('created_at', now())->get();
