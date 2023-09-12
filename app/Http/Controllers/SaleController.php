@@ -24,12 +24,14 @@ class SaleController extends Controller
         $date = now();
         $dailyVoucher = Voucher::WhereDate('created_at', $date)->get();
         $totalVoucher = $dailyVoucher->count('id');
+        $totalActualPrice = $dailyVoucher->sum('total_actual_price');
         $total = $dailyVoucher->sum('total');
         $taxTotal = $dailyVoucher->sum('tax');
         $netTotal = $dailyVoucher->sum('net_total');
 
         DailySale::create([
             "total_voucher" => $totalVoucher,
+            "total_actual_price" => $totalActualPrice,
             "total_cash" => $total,
             "tax_total" => $taxTotal,
             "total" => $netTotal
