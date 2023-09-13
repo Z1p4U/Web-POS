@@ -16,7 +16,7 @@ class MonthlySaleSeeder extends Seeder
      */
     public function run(): void
     {
-        $startOfMonth = Carbon::create(2022, 9, 1);
+        $startOfMonth = Carbon::create(2023, 7, 1);
         $sales = [];
         for ($i = 1; $startOfMonth->format("M Y") != Carbon::now()->format("M Y"); $i++) {
             $endOfMonth = $startOfMonth->copy()->endOfMonth();
