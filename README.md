@@ -298,6 +298,8 @@ https://g.mmsdev.site/api/vi/stock
 
 ## Sale
 
+### Sale
+
 #### Checkout (Post)
 
 ```https
