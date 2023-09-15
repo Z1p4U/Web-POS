@@ -210,8 +210,12 @@ https://g.mmsdev.site/api/v1/brand/{id}
 #### Products (Get)
 
 ```https
-https://g.mmsdev.site/api/v1/product
+https://g.mmsdev.site/api/v1/product?keyword=productName
 ```
+
+| Arguments | Type   | Description              |
+| :-------- | :----- | :----------------------- |
+| keyword   | string | **Nullable** productName |
 
 #### Sorting by id and name
 
@@ -344,6 +348,17 @@ https://g.mmsdev.site/api/v1/voucher-record-products
 ```https
 https://g.mmsdev.site/api/v1/voucher/{id}
 ```
+
+#### Sale Products (Get)
+
+```https
+https://g.mmsdev.site/api/v1/sale-products?brand_id=3&keyword=productName
+```
+
+| Arguments | Type    | Description              |
+| :-------- | :------ | :----------------------- |
+| brand_id  | integer | **Nullable** 2           |
+| keyword   | string  | **Nullable** productName |
 
 ### Finance
 

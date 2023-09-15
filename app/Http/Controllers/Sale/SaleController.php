@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Sale;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\SaleProductResource;
 use App\Models\DailySale;
 use App\Models\MonthlySale;
+use App\Models\Product;
 use App\Models\Sale;
 use App\Models\Voucher;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class SaleController extends Controller
@@ -99,5 +102,25 @@ class SaleController extends Controller
             "data" => $saleClose,
             "message" => "Opened Sale"
         ]);
+    }
+
+    public function saleProducts(Request $request)
+    {
+        $brandId = $request->brand_id;
+        $products = Product::when(request()->has("keyword"), function ($query) {
+            $query->where(function (Builder $builder) {
+                $keyword = request()->keyword;
+                $builder->where("name", "LIKE", "%" . $keyword . "%");
+            });
+        })->when($request->has('brand_id'), function ($query) use ($brandId) {
+            $query->where('brand_id', $brandId);
+        })->latest('id')->get();
+
+        if (empty($products->toArray())) {
+            return response()->json([
+                "message" => "There is no products"
+            ]);
+        }
+        return SaleProductResource::collection($products);
     }
 }
