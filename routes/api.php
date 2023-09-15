@@ -1,17 +1,17 @@
 <?php
 
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\BrandController;
-use App\Http\Controllers\CheckoutController;
-use App\Http\Controllers\FinanceController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\StockController;
-use App\Http\Controllers\VoucherController;
-use App\Http\Controllers\VoucherRecordController;
-use App\Http\Controllers\PasswordController;
-use App\Http\Controllers\PhotoController;
-use App\Http\Controllers\ReportController;
-use App\Http\Controllers\SaleController;
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Auth\PasswordController;
+use App\Http\Controllers\Inventory\BrandController;
+use App\Http\Controllers\Inventory\ProductController;
+use App\Http\Controllers\Inventory\StockController;
+use App\Http\Controllers\Sale\CheckoutController;
+use App\Http\Controllers\Sale\SaleController;
+use App\Http\Controllers\Sale\VoucherController;
+use App\Http\Controllers\Sale\VoucherRecordController;
+use App\Http\Controllers\Media\PhotoController;
+use App\Http\Controllers\Report\FinanceController;
+use App\Http\Controllers\Report\ReportController;
 use App\Http\Middleware\AcceptJson;
 use App\Http\Middleware\CheckUserBanned;
 use App\Http\Middleware\SaleClosedCheck;

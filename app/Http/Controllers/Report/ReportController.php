@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Report;
 
+use App\Http\Controllers\Controller;
 use App\Http\Resources\CheckStockLevelResource;
 use App\Http\Resources\ProductResource;
 use App\Http\Resources\ReportSaleResource;

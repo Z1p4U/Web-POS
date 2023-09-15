@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Sale;
 
+use App\Http\Controllers\Controller;
 use App\Models\VoucherRecord;
 use App\Http\Requests\StoreVoucherRecordRequest;
 use App\Http\Requests\UpdateVoucherRecordRequest;

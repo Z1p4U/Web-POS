@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Sale;
 
+use App\Http\Controllers\Controller;
 use App\Models\DailySale;
 use App\Models\MonthlySale;
 use App\Models\Sale;
