@@ -98,9 +98,9 @@ class ReportController extends Controller
         $date = now();
         $todaySaleProducts = Voucher::whereDate('created_at', $date)->get();
         $todayTotal = $todaySaleProducts->sum('total');
-        $todayMaxSale = $todaySaleProducts->where('total' , $todaySaleProducts->max('total'))->first();
+        $todayMaxSale = $todaySaleProducts->where('total', $todaySaleProducts->max('total'))->first();
         $todayAvgSale = $todaySaleProducts->avg('total');
-        $todayMinSale = $todaySaleProducts->where('total' , $todaySaleProducts->min('total'))->first();
+        $todayMinSale = $todaySaleProducts->where('total', $todaySaleProducts->min('total'))->first();
 
         // Product Sale
         $products = Product::when(request()->has('price'), function ($query) {
@@ -108,7 +108,7 @@ class ReportController extends Controller
         })->orderBy('sale_price', 'desc')->limit(5)->get();
 
         return response()->json([
-            "today_sales" => [
+            "today_sales" => empty($todaySaleProducts->toArray()) ? ["total" => $todayTotal, "message" => "No Voucher!"] : [
                 "total" => $todayTotal,
                 "today_max_sale" => new TodaySaleProductReportResource($todayMaxSale),
                 "today_avg_sale" => round($todayAvgSale),

@@ -21,9 +21,7 @@ class PhotoController extends Controller
      */
     public function index()
     {
-        $photos = Photo::when(Auth::user()->role !== "admin", function ($query) {
-            $query->where("user_id", Auth::id());
-        })->latest("id")->get();
+        $photos = Photo::latest("id")->get();
 
         if (empty($photos->toArray())) {
             return response()->json([
