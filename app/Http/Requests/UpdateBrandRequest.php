@@ -22,7 +22,7 @@ class UpdateBrandRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "name" => "required|unique:brands,name",
+            "name" => "required|exists:brands,name",
             "company" => "required",
             "agent" => 'required',
             "phone" => 'required',
