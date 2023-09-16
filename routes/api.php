@@ -52,6 +52,7 @@ Route::prefix("v1")->group(function () {
                 Route::post('sale-close', 'saleClose');
                 Route::post('sale-open', 'openSale');
                 Route::get('sale-products', 'saleProducts');
+                Route::get('sale-brands', 'saleBrands');
             });
 
             Route::controller(FinanceController::class)->middleware('can:admin-only')->group(function () {

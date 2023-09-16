@@ -349,6 +349,12 @@ https://g.mmsdev.site/api/v1/voucher-record-products
 https://g.mmsdev.site/api/v1/voucher/{id}
 ```
 
+#### Sale Brands (Get)
+
+```https
+https://g.mmsdev.site/api/v1/sale-brands
+```
+
 #### Sale Products (Get)
 
 ```https

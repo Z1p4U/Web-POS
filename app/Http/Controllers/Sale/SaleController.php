@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Sale;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\SaleBrandResource;
 use App\Http\Resources\SaleProductResource;
+use App\Models\Brand;
 use App\Models\DailySale;
 use App\Models\MonthlySale;
 use App\Models\Product;
@@ -122,5 +124,16 @@ class SaleController extends Controller
             ]);
         }
         return SaleProductResource::collection($products);
+    }
+
+    public function saleBrands()
+    {
+        $brands = Brand::all();
+        if (empty($brands->toArray())) {
+            return response()->json([
+                "message" => "There is no products yet!"
+            ]);
+        }
+        return SaleBrandResource::collection($brands);
     }
 }
