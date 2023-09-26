@@ -21,7 +21,7 @@ class AuthController extends Controller
         if (Auth::user()->role !== "admin") {
             return response()->json([
                 "message" => "You Are Not Allowed"
-            ]);
+            ],403);
         }
 
         $users = User::all();
@@ -173,6 +173,11 @@ class AuthController extends Controller
     {
         Gate::authorize("admin-only");
         $user = User::find($id);
+        if ($user->role === 'admin') {
+            return response()->json([
+                "message" => "Don't be a fool. It will be okay!"
+            ]);
+        }
         $user->banned = true;
         $user->update();
 
@@ -183,6 +188,11 @@ class AuthController extends Controller
     {
         Gate::authorize("admin-only");
         $user = User::find($id);
+        if ($user->role === 'admin') {
+            return response()->json([
+                "message" => "Don't be a fool. It will be okay!"
+            ]);
+        }
         $user->banned = false;
         $user->update();
 
@@ -216,21 +226,21 @@ class AuthController extends Controller
         ]);
     }
 
-    public function updatePassword(Request $request)
-    {
-        $validated = $request->validateWithBag('updatePassword', [
-            'current_password' => ['required', "current_password"],
-            'password' => ['required', Password::defaults(), 'confirmed'],
-        ]);
+    // public function updatePassword(Request $request)
+    // {
+    //     $validated = $request->validateWithBag('updatePassword', [
+    //         'current_password' => ['required', "current_password"],
+    //         'password' => ['required', Password::defaults(), 'confirmed'],
+    //     ]);
 
-        // Gate::authorize("admin-only");
+    //     // Gate::authorize("admin-only");
 
-        $request->user()->update([
-            'password' => Hash::make($validated['password']),
-        ]);
+    //     $request->user()->update([
+    //         'password' => Hash::make($validated['password']),
+    //     ]);
 
-        return response()->json([
-            "message" => "Password Updated",
-        ]);
-    }
+    //     return response()->json([
+    //         "message" => "Password Updated",
+    //     ]);
+    // }
 }

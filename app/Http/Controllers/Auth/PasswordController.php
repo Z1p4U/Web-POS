@@ -26,6 +26,7 @@ class PasswordController extends Controller
         $request->user()->update([
             'password' => Hash::make($validated['password']),
         ]);
+        $request->user()->currentAccessToken()->delete();
 
 
         return response()->json([
